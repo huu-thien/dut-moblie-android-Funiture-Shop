@@ -1,30 +1,78 @@
 package com.AndroidFunitureShopApp.view;
 
+import android.graphics.Outline;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.AndroidFunitureShopApp.R;
+import com.AndroidFunitureShopApp.databinding.ActivityMainBinding;
+import com.AndroidFunitureShopApp.databinding.FragmentHomeBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeFragment extends Fragment {
 
+    private FragmentHomeBinding binding;
+
+    private void ActionSlider() {
+        List<String> sliders = new ArrayList<>();
+        sliders.add("https://hstatic.net/336/1000150336/1000203404/slideshow_3.jpg?v=24");
+        sliders.add("https://theme.hstatic.net/200000584705/1000969925/14/home_slider_item_image_3.png?v=2524");
+        sliders.add("https://hstatic.net/336/1000150336/1000203404/slideshow_2.jpg?v=24");
+        sliders.add("https://hstatic.net/336/1000150336/1000203404/slideshow_1.jpg?v=24");
+        sliders.add("https://theme.hstatic.net/200000584705/1000969925/14/home_slider_item_image_2.png?v=2524");
+        for (int i = 0; i < sliders.size(); i++) {
+            ImageView imgView = new ImageView(requireContext());
+            Picasso.get().load(sliders.get(i)).into(imgView);
+            imgView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imgView.setClipToOutline(true);
+            imgView.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    int size = getResources().getDimensionPixelSize(R.dimen.image_rounding_size);
+                    outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), size);
+                }
+            });
+            binding.vfSlider.addView(imgView);
+        }
+        binding.vfSlider.setFlipInterval(3000);
+        binding.vfSlider.setAutoStart(true);
+
+        Animation slide_in = AnimationUtils.loadAnimation(requireContext(), R.anim.slider_in_right);
+        Animation slide_out = AnimationUtils.loadAnimation(requireContext(), R.anim.slider_out_right);
+
+        binding.vfSlider.setInAnimation(slide_in);
+        binding.vfSlider.setOutAnimation(slide_out);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = FragmentHomeBinding.inflate(getLayoutInflater());
         if (getArguments() != null) {
 
         }
+        ActionSlider();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        return view;
+        View viewRoot = binding.getRoot();
+        return viewRoot;
     }
 }
