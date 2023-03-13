@@ -7,15 +7,12 @@
 
     while ($row = mysqli_fetch_assoc($data)) {
         $result[] = ($row);
-        //code
     }
 
     if(!empty($result)) {
-        $arr = [
-            'success' => true,
-            'message' => 'success',
-            'result' => $result
-        ];
+        $arr =
+            $result
+        ;
     } else {
         $arr = [
             'success' => false,
