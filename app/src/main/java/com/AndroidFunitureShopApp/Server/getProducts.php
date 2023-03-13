@@ -1,6 +1,6 @@
 <?php
     include "connect.php";
-    $query = "SELECT * FROM `Categories`";
+    $query = "SELECT * FROM `product`";
 
     $data = mysqli_query($conn, $query);
     $result = array();

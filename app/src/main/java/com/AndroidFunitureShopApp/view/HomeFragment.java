@@ -3,9 +3,13 @@ package com.AndroidFunitureShopApp.view;
 import android.graphics.Outline;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +19,32 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.AndroidFunitureShopApp.R;
-import com.AndroidFunitureShopApp.databinding.ActivityMainBinding;
 import com.AndroidFunitureShopApp.databinding.FragmentHomeBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.AndroidFunitureShopApp.model.Product;
+import com.AndroidFunitureShopApp.model.productsAdapter;
+import com.AndroidFunitureShopApp.viewmodel.productsAPIService;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.observers.DisposableSingleObserver;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private productsAPIService apiServices;
+    private RecyclerView rvDogs;
+    private ArrayList<Product> products;
+    private ArrayList<Product> productsCopy;
+    private ArrayList<Product> newProducts;
+    private productsAdapter productsAdapter;
+
+    public HomeFragment() {
+    }
 
     private void ActionSlider() {
         List<String> sliders = new ArrayList<>();
@@ -74,5 +92,37 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View viewRoot = binding.getRoot();
         return viewRoot;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        products = new ArrayList<Product>();
+        newProducts = new ArrayList<Product>();
+        productsAdapter = new productsAdapter(newProducts);
+        binding.rvProducts.setAdapter(productsAdapter);
+        binding.rvProducts.setLayoutManager(new GridLayoutManager(getContext(),2));
+
+        apiServices = new productsAPIService();
+        apiServices.getProducts()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<List<Product>>() {
+                    @Override
+                    public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<Product> products) {
+                        Log.d("DEBUG","Success");
+                        for (Product dog: products) {
+                            newProducts.add(dog);
+                        }
+                        productsAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                        Log.d("DEBUG","Fail" + e.getMessage());
+                    }
+                });
+
     }
 }
