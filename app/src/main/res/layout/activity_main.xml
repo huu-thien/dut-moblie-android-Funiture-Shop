@@ -37,7 +37,5 @@
             app:itemIconTint="#376553"
             app:itemTextColor="#376553"
             app:menu="@menu/menu_bottom_nav" />
-
     </LinearLayout>
-
 </LinearLayout>

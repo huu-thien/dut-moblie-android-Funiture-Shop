@@ -1,6 +1,7 @@
 package com.AndroidFunitureShopApp.model;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,9 +41,14 @@ public class productsAdapter extends RecyclerView.Adapter<productsAdapter.Viewho
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         holder.tvName.setText(products.get(position).getName());
-        holder.tvDetail.setText(products.get(position).getDetail());
-        Picasso.get().load(products.get(position).getImageUrl()).into(holder.imageUrl);
 
+        holder.tvOriginalPrice.setText(String.valueOf(products.get(position).getOriginalPrice())+"$");
+        holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+        holder.tvPrice.setText(String.valueOf(products.get(position).getPrice())+"$");
+
+        //holder.tvDetail.setText(products.get(position).getDetail());
+        Picasso.get().load(products.get(position).getImageUrl()).into(holder.imageUrl);
     }
 
     @Override
@@ -59,22 +65,17 @@ public class productsAdapter extends RecyclerView.Adapter<productsAdapter.Viewho
         public ImageView imageUrl;
         public TextView tvName;
         public TextView tvDetail;
+        public TextView tvOriginalPrice;
+        public TextView tvPrice;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             imageUrl = (ImageView) itemView.findViewById(R.id.image_url);
             tvName = (TextView) itemView.findViewById(R.id.tv_name);
-            tvDetail = (TextView) itemView.findViewById(R.id.tv_detail);
+            //tvDetail = (TextView) itemView.findViewById(R.id.tv_detail);
+            tvOriginalPrice = (TextView) itemView.findViewById(R.id.tv_original_price);
+            tvPrice = (TextView) itemView.findViewById(R.id.tv_price);
 
-            ImageView heart = itemView.findViewById(R.id.heart);
-
-            heart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Thay đổi màu sắc của ImageView
-                    heart.setImageResource(R.drawable.red_heart);
-                }
-            });
         }
     }
 }

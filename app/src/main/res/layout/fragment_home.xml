@@ -8,11 +8,11 @@
     android:orientation="vertical"
     tools:context=".view.HomeFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:title=""
-        app:titleTextColor="#376553"></androidx.appcompat.widget.Toolbar>
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:title=""-->
+<!--        app:titleTextColor="#376553"></androidx.appcompat.widget.Toolbar>-->
 
     <ViewFlipper
         android:id="@+id/vf_slider"
@@ -20,7 +20,8 @@
         android:layout_height="200dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingBottom="20dp">
+        android:paddingBottom="20dp"
+        >
 
     </ViewFlipper>
 
