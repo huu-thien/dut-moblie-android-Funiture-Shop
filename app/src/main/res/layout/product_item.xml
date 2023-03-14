@@ -103,7 +103,10 @@
                 android:layout_height="wrap_content"
                 android:text="Add to cart"
                 android:textSize="11sp"
-                android:backgroundTint="#376553">
+                android:textColor="#fff"
+                android:backgroundTint="#376553"
+                android:outlineAmbientShadowColor="@android:color/transparent"
+                android:outlineSpotShadowColor="@android:color/transparent">
             </Button>
 
         </LinearLayout>
