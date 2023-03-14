@@ -38,7 +38,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `NameCategory`, `ImageCategory`) VALUES
-(1, 'Bed Room', 'https://xuongnoithatpula.vn/storage/images/2021/11/20/giuong-ngu-pula-pb10-1-1637342942.jpeg'),
+    (1, 'Bed Room', 'https://xuongnoithatpula.vn/storage/images/2021/11/20/giuong-ngu-pula-pb10-1-1637342942.jpeg'),
 (2, 'Living Room', 'https://sofakimphu.com/wp-content/uploads/2022/10/z3743223521986_197960b554c97a0e2dcf54c130175e05.jpg');
 
 -- --------------------------------------------------------

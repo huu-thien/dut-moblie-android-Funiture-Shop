@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class productsAPIService {
 
 
-    private static final String BASE_URL="http://192.168.1.2:8080/Mobile-App-Furniture-Shop/"; // ip của Ni
-//    private static final String BASE_URL="http://192.168.1.11:8080/Mobile-App-Furniture-Shop/"; // ip của Thiện đẹp trai
+//    private static final String BASE_URL="http://192.168.1.2:8080/Mobile-App-Furniture-Shop/"; // ip của Ni
+    private static final String BASE_URL="http://192.168.1.11:8080/Mobile-App-Furniture-Shop/"; // ip của Thiện đẹp trai
     private productsAPI api;
 
 
