@@ -1,4 +1,4 @@
-package com.AndroidFunitureShopApp.model;
+package com.AndroidFunitureShopApp.model.Product;
 
 public class Product {
     private int id;

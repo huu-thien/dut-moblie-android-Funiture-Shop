@@ -20,8 +20,8 @@ import android.widget.ImageView;
 
 import com.AndroidFunitureShopApp.R;
 import com.AndroidFunitureShopApp.databinding.FragmentHomeBinding;
-import com.AndroidFunitureShopApp.model.Product;
-import com.AndroidFunitureShopApp.model.productsAdapter;
+import com.AndroidFunitureShopApp.model.Product.Product;
+import com.AndroidFunitureShopApp.model.Product.productsAdapter;
 import com.AndroidFunitureShopApp.viewmodel.productsAPIService;
 import com.squareup.picasso.Picasso;
 

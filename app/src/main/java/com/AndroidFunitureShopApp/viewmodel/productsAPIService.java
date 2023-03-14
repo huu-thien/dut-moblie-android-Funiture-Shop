@@ -1,6 +1,6 @@
 package com.AndroidFunitureShopApp.viewmodel;//package com.AndroidFunitureShopApp.viewmodel;
-import com.AndroidFunitureShopApp.model.Product;
-import com.AndroidFunitureShopApp.model.productsAPI;
+import com.AndroidFunitureShopApp.model.Product.Product;
+import com.AndroidFunitureShopApp.model.Product.productsAPI;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class productsAPIService {
 
 
-//    private static final String BASE_URL="http://192.168.1.2:8080/Mobile-App-Furniture-Shop/"; // ip của Ni
-    private static final String BASE_URL="http://192.168.1.11:8080/Mobile-App-Furniture-Shop/"; // ip của Thiện đẹp trai
+    private static final String BASE_URL="http://192.168.1.2:8080/Mobile-App-Furniture-Shop/"; // ip của Ni
+//    private static final String BASE_URL="http://192.168.1.11:8080/Mobile-App-Furniture-Shop/"; // ip của Thiện đẹp trai
     private productsAPI api;
 
 

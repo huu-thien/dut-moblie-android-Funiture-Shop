@@ -1,4 +1,4 @@
-package com.AndroidFunitureShopApp.model;
+package com.AndroidFunitureShopApp.model.Product;
 
 import android.content.Context;
 import android.graphics.Paint;
