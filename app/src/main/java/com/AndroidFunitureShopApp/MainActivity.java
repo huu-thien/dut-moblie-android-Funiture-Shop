@@ -64,22 +64,22 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.action_home:
                     Log.d("DEBUG","0");
-                    Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
                     viewPager.setCurrentItem(0);
                     break;
                 case  R.id.action_category:
                     Log.d("DEBUG","1");
-                    Toast.makeText(MainActivity.this, "Category", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "Category", Toast.LENGTH_SHORT).show();
                     viewPager.setCurrentItem(1);
                     break;
                 case R.id.action_account:
                     Log.d("DEBUG","2");
-                    Toast.makeText(MainActivity.this, "Your Account", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "Your Account", Toast.LENGTH_SHORT).show();
                     viewPager.setCurrentItem(2);
                     break;
                 case R.id.action_cart:
                     Log.d("DEBUG","3");
-                    Toast.makeText(MainActivity.this, "Your Cart", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "Your Cart", Toast.LENGTH_SHORT).show();
                     viewPager.setCurrentItem(3);
                     break;
             };

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="155dp"
+    android:layout_height="145dp"
     android:orientation="vertical"
     app:cardCornerRadius="10dp"
     app:cardBackgroundColor="#f6f6f6"
@@ -25,12 +25,12 @@
         <ImageView
             android:id="@+id/image_url"
             android:layout_width="150dp"
-            android:layout_height="140dp"
+            android:layout_height="130dp"
             android:adjustViewBounds="true" />
 
         <LinearLayout
             android:paddingLeft="12dp"
-            android:gravity="center_vertical"
+            
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -41,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="TextView"
+                android:textStyle="bold"
                 android:textColor="#376553"
                 android:textSize="18sp" />
             <TextView
@@ -50,8 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="TextView"
-                android:textColor="#376553"
-                android:textSize="15sp" />
+                android:textColor="#333"
+                android:textSize="13sp" />
             <TextView
 
                 android:id="@+id/tv_description"
@@ -59,8 +60,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="TextView"
-                android:textColor="#376553"
-                android:textSize="15sp" />
+                android:textColor="#333"
+                android:textSize="13sp" />
         </LinearLayout>
 
     </LinearLayout>

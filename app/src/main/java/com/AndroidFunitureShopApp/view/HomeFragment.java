@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.view.ViewOutlineProvider;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ViewFlipper;
 
 import com.AndroidFunitureShopApp.R;
 import com.AndroidFunitureShopApp.databinding.FragmentHomeBinding;
@@ -42,7 +44,6 @@ public class HomeFragment extends Fragment {
     private ArrayList<Product> productsCopy;
     private ArrayList<Product> newProducts;
     private productsAdapter productsAdapter;
-
     public HomeFragment() {
     }
 

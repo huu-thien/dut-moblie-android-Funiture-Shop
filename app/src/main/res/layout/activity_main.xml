@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:nestedScrollingEnabled="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,8 +22,11 @@
             android:fontFamily="cursive"
             android:padding="20sp"
             android:text="Furniture in your style"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            android:textSize="42sp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:background="#376553" />
+
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
@@ -30,13 +34,14 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_nav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            app:itemIconTint="#376553"
-            app:itemTextColor="#376553"
-            app:menu="@menu/menu_bottom_nav" />
-    </LinearLayout>
-</LinearLayout>
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottom_nav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    app:itemIconTint="#376553"
+                    app:itemTextColor="#376553"
+                    app:menu="@menu/menu_bottom_nav" />
+            </LinearLayout>
+        </LinearLayout>
