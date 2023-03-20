@@ -1,5 +1,17 @@
 <?php
-    include "connect.php";
+    // include "connect.php";
+    // VA thêm vào
+    $host = "localhost";
+        $user = "root";
+        $pass = "";
+        $database = "categories";
+
+        $conn = mysqli_connect($host, $user, $pass, $database);
+        mysqli_set_charset($conn,'utf8');
+
+        if($conn) {
+            // echo "Connection established";
+        }
     $query = "SELECT * FROM `categories`";
 
     $data = mysqli_query($conn, $query);
