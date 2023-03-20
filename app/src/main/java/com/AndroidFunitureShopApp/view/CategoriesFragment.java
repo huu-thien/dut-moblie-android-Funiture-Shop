@@ -70,16 +70,17 @@ public class CategoriesFragment extends Fragment {
                 .subscribeWith(new DisposableSingleObserver<List<Categories>>() {
                     @Override
                     public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<Categories> Categories1) {
-                        Log.d("DEBUG","Success");
+                        Log.d("DEBUG","Success at loading categories");
                         for (Categories category: Categories1) {
                             newCategories.add(category);
+                            Log.d("DEBUG",""+ category.getId() + "\t" + category.getName());
                         }
                         categoriesAdapter.notifyDataSetChanged();
                     }
 
                     @Override
                     public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-                        Log.d("DEBUG","Fail" + e.getMessage());
+                        Log.d("DEBUG","Fail at loading categories" + e.getMessage());
                     }
                 });
 

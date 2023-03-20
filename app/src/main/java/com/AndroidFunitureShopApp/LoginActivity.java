@@ -40,9 +40,9 @@ public class LoginActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
                                     // Nếu đăng nhập thành công, cập nhật biến trạng thái
-//                                    SharedPreferences.Editor editor = getSharedPreferences("my_prefs", MODE_PRIVATE).edit();
-//                                    editor.putBoolean("isLoggedIn", true);
-//                                    editor.apply();
+                                    SharedPreferences.Editor editor = getSharedPreferences("my_prefs", MODE_PRIVATE).edit();
+                                    editor.putBoolean("isLoggedIn", true);
+                                    editor.apply();
 //                                     Chuyển hướng người dùng đến màn hình chính
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
