@@ -15,7 +15,7 @@
             android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@+id/frameLayout2"
+            android:id="@+id/frameLayoutAccount"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="#1A525050"
@@ -43,7 +43,8 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_baseline_person_24"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" />
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/selectPhoto"
                 android:layout_width="wrap_content"
@@ -145,7 +146,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/etPassword"
                 tools:text="error stinrg" />
             <Button
-                android:id="@+id/btnSignUp"
+                android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="32dp"
@@ -154,7 +155,7 @@
                 android:layout_marginBottom="100dp"
                 android:background="@drawable/sign_up_button_selector"
                 android:onClick="@{()->signUpViewModel.createUser()}"
-                android:text="Sign Up"
+                android:text="Save"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -22,7 +22,7 @@
             android:fontFamily="cursive"
             android:padding="20sp"
             android:text="Furniture in your style"
-            android:textSize="42sp"
+            android:textSize="20sp"
             android:textColor="#fff"
             android:textStyle="bold"
             android:background="#376553" />
