@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.AndroidFunitureShopApp.databinding.ActivityRegister2Binding;
@@ -83,13 +84,13 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = binding.etEmail.getText().toString().trim();
                 String pass = binding.etPassword.getText().toString().trim();
                 String confirmPass  = binding.etreenter.getText().toString();
+
                 if (!email.equals("") && !pass.equals("") && !confirmPass.equals("") && pass.equals(confirmPass)) {
                     createNewUser(email, pass);
                 }
                 else {
-                    Toast.makeText(RegisterActivity.this, "Wrong information!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Wrong or Missing information!", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
@@ -115,6 +116,8 @@ public class RegisterActivity extends AppCompatActivity {
                             DocumentReference df = fStore.collection("User").document(user.getUid());
                             Map<String, Object> userInfo = new HashMap<>();
                             userInfo.put("Name", binding.etName.getText().toString());
+                            userInfo.put("Fullname","");
+                            userInfo.put("Phonenumber","");
                             userInfo.put("Email", binding.etEmail.getText().toString());
                             if(binding.cbisAdmin.isChecked()){
                                 userInfo.put("isAdmin", "1");
@@ -131,28 +134,5 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
-    }
-
-    public void UpdateUser( ){
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName("Jane Q. User")
-                .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
-                .build();
-
-        user.updateProfile(profileUpdates)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, "Update Success", Toast.LENGTH_LONG).show();
-                        }
-                        else {
-                            Toast.makeText(RegisterActivity.this, "Update Fail", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-
     }
 }

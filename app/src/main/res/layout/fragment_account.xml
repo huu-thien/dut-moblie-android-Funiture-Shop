@@ -25,20 +25,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/progressBar"-->
-<!--                style="?android:attr/progressBarStyle"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center" />-->
-
         </FrameLayout>
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ciAvatar"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
+                android:layout_width="99dp"
+                android:layout_height="87dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_baseline_person_24"
@@ -115,6 +108,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etPhone" />
+
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
@@ -130,39 +124,40 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etEmail" />
-            <TextView
-                android:id="@+id/errorTV"
-                hideIfEmpty="@{signUpViewModel.signUpError}"
-                android:layout_width="0dp"
+
+            <EditText
+                android:id="@+id/etNewPassword"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:maxLines="3"
-                android:textAlignment="viewStart"
-                android:textAllCaps="true"
-                android:textColor="@android:color/holo_red_dark"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/etPassword"
-                app:layout_constraintStart_toStartOf="@+id/etPassword"
-                app:layout_constraintTop_toBottomOf="@+id/etPassword"
-                tools:text="error stinrg" />
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/rounded_border"
+                android:hint="New Password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="100dp"
+                android:gravity="center"
                 android:background="@drawable/sign_up_button_selector"
-                android:onClick="@{()->signUpViewModel.createUser()}"
                 android:text="Save"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/errorTV"
-                app:layout_constraintVertical_bias="0.58000004" />
+                app:layout_constraintTop_toBottomOf="@+id/etNewPassword" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
