@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.AndroidFunitureShopApp.databinding.ActivityRegister2Binding;
@@ -21,9 +22,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private ActivityRegister2Binding binding;
 
     @Override
@@ -48,6 +55,24 @@ public class RegisterActivity extends AppCompatActivity {
                 String confirmPass  = binding.etreenter.getText().toString();
                 if (!oldPass.equals("") && !confirmPass.equals("") && !oldPass.equals(confirmPass)) {
                     Toast.makeText(RegisterActivity.this, "RePassword and Password not equal!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        binding.cbisAdmin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked == true){
+                    binding.cbisUser.setChecked(false);
+                }
+            }
+        });
+
+        binding.cbisUser.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked == true){
+                    binding.cbisAdmin.setChecked(false);
                 }
             }
         });
@@ -85,7 +110,19 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(RegisterActivity.this, "Register Success", Toast.LENGTH_LONG).show();
+                            DocumentReference df = fStore.collection("User").document(user.getUid());
+                            Map<String, Object> userInfo = new HashMap<>();
+                            userInfo.put("Name", binding.etName.getText().toString());
+                            userInfo.put("Email", binding.etEmail.getText().toString());
+                            if(binding.cbisAdmin.isChecked()){
+                                userInfo.put("isAdmin", "1");
+                            }
+                            if(binding.cbisUser.isChecked()){
+                                userInfo.put("isUser", "1");
+                            }
+                            df.set(userInfo);
                         }else {
                             Toast.makeText(RegisterActivity.this, "Register Fail", Toast.LENGTH_SHORT).show();
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {
