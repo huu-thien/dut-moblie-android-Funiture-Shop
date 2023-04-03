@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +51,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Viewho
         CartItem cartItem = cartItemList.get(position);
         holder.tvName.setText(" " + cartItem.getName());
         holder.tvQuantity.setText(cartItem.getQuantity() + "");
-        holder.tvPrice.setText(cartItem.getPrice() + "$");
+//        holder.tvPrice.setText(cartItem.getPrice() + "$");
         long totalprice = cartItem.getQuantity() * cartItem.getPrice();
         holder.tvTotalCartPrice.setText(totalprice + "$");
         Picasso.get().load(cartItem.getImageUrl()).into(holder.imageUrl);
@@ -91,8 +92,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Viewho
         public TextView tvQuantity;
         public TextView tvPrice;
         public TextView tvTotalCartPrice;
-        public ImageView btnAdd;
-        public ImageView btnSub;
+        public Button btnAdd;
+        public Button btnSub;
         public ImageView btnAddDrag;
         public IImageClickListenner listenner;
 
@@ -101,10 +102,10 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Viewho
             imageUrl = itemView.findViewById(R.id.image_carturl);
             tvName = itemView.findViewById(R.id.txt_cartname);
             tvQuantity = itemView.findViewById(R.id.txt_cartquantity);
-            tvPrice = itemView.findViewById(R.id.txt_cartprice);
-            btnAdd = itemView.findViewById(R.id.btn_cartadd);
-            btnSub = (ImageView) itemView.findViewById(R.id.btn_cartremove);
-            btnAddDrag = (ImageView) itemView.findViewById(R.id.btn_cartdrag);
+            //tvPrice = itemView.findViewById(R.id.txt_cartprice);
+            btnAdd = (Button) itemView.findViewById(R.id.btn_cartadd);
+            btnSub = (Button) itemView.findViewById(R.id.btn_cartremove);
+            //btnAddDrag = (ImageView) itemView.findViewById(R.id.btn_cartdrag);
             tvTotalCartPrice = itemView.findViewById(R.id.txt_carttotalprice);
 
             btnAdd.setOnClickListener(this);
