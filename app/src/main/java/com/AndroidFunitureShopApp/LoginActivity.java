@@ -3,16 +3,28 @@ package com.AndroidFunitureShopApp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.AndroidFunitureShopApp.databinding.LoginBinding;
+import com.AndroidFunitureShopApp.model.Account.Account;
+import com.AndroidFunitureShopApp.viewmodel.AccountAPIService;
+
+import java.util.List;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginBinding binding;
+    AccountAPIService accountAPIService;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,40 +33,76 @@ public class LoginActivity extends AppCompatActivity {
         View viewRoot = binding.getRoot();
         setContentView(viewRoot);
 
+
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = binding.etEmail.getText().toString();
-                String password = binding.etPassword.getText().toString();
-
-                if (username.equals("admin") && password.equals("123456")) {
-                    // Nếu đăng nhập thành công, cập nhật biến trạng thái
-                    SharedPreferences.Editor editor = getSharedPreferences("my_prefs", MODE_PRIVATE).edit();
-                    editor.putBoolean("isLoggedIn", true);
-                    editor.apply();
-
-                    // Chuyển hướng người dùng đến màn hình chính
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(LoginActivity.this, "Tên đăng nhập hoặc mật khẩu không đúng.", Toast.LENGTH_SHORT).show();
-                }
+                login();
             }
         });
+
+        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void login(){
+        String username = binding.etEmail.getText().toString().trim();
+        String password = binding.etPassword.getText().toString().trim();
+        accountAPIService = new AccountAPIService();
+        if(TextUtils.isEmpty(username)){
+            Toast.makeText(getApplicationContext(), "Please, enter your username!", Toast.LENGTH_SHORT).show();
+        }   else if(TextUtils.isEmpty(password)){
+            Toast.makeText(getApplicationContext(), "Please, enter your password!", Toast.LENGTH_SHORT).show();
+        }   else {
+            compositeDisposable.add(accountAPIService.login(username, password)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            accountModel -> {
+                                if (accountModel.isSuccess()){
+                                    Bundle bundle = new Bundle();
+                                    Account account = accountModel.getResult().get(0);
+                                    //Account account = accounts.get(0);
+                                    String role = account.getRole().toString();
+                                    String id = String.valueOf(account.getId());
+                                    if(role.equals("user")){
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        bundle.putString("key", id);
+                                        startActivity(intent);
+                                        finish();
+                                    } else if (role.equals("admin")){
+                                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                                        bundle.putString("key", id);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                    Toast.makeText(getApplicationContext(), accountModel.getMessage(), Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(getApplicationContext(), accountModel.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                }
+                            },
+                            throwable -> {
+                                Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                    ));
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences sharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE);
-        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-
-        if (isLoggedIn) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
     }
 
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
+    }
 }
