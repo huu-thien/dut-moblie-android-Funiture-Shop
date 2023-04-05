@@ -22,8 +22,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="CART"
-        android:background="#02E3CE"
+        app:title="MY SHOPPING BAG"
+        android:background="#FFF"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 
@@ -33,7 +33,7 @@
         android:id="@+id/rv_cartitems"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="5dp"
+        android:layout_margin="2dp"
         app:layout_constraintBottom_toTopOf="@id/layout1"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="1.0"
@@ -51,9 +51,9 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="26sp"
+            android:textSize="20sp"
             android:text="TOTAL BILL: "
-            android:textStyle="bold"
+            android:textColor="#376553"
             >
         </TextView>
 
@@ -63,18 +63,19 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="0$"
-
-            android:textSize="26sp"
+            android:textColor="#376553"
+            android:textSize="20sp"
             android:textStyle="bold"></TextView>
     </LinearLayout>
     <Button
         android:layout_margin="10dp"
         android:id="@+id/btn_muahang"
-        android:background="#17CDBC"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="BUY PRODUCTS"
-        android:textSize="26sp"
+        android:textSize="20sp"
+        android:textColor="#fff"
+        android:backgroundTint="#376553"
         app:layout_constraintBottom_toBottomOf="parent"
         ></Button>
 

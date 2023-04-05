@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class productsAPIService {
 
-    private static final String BASE_URL = "http://192.168.68.201:2024/furnitureshop_v2/";
+    private static final String BASE_URL = _Constant.baseUrl;
     private productsAPI api;
 
 

@@ -98,11 +98,11 @@ public class productsAdapter extends RecyclerView.Adapter<productsAdapter.Viewho
             });
 
             btnAddCart.setOnClickListener(new View.OnClickListener() {
-
                 @Override
                 public void onClick(View v) {
                     Product product = products.get(getAdapterPosition());
                     CartsListData.addToCart(product);
+                    Toast.makeText(itemView.getContext(), "Add to cart successfuly !!", Toast.LENGTH_SHORT).show();
                 }
             });
         }

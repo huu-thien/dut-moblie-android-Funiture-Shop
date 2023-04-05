@@ -6,7 +6,8 @@ import com.AndroidFunitureShopApp.model.Product.Product;
 import java.util.List;
 
 public class CartsListData {
-    private static final String BASE_URL = "http://192.168.68.201:2024/furnitureshop_v2/"; // ip của Vanh
+    //private static final String BASE_URL = "http://192.168.68.201:2024/furnitureshop_v2/"; // ip của Vanh
+    private static final String BASE_URL = _Constant.baseUrl;
     public static List<CartItem> cartItemList;
 
     public static void addToCart(Product product) {
