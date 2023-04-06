@@ -25,4 +25,17 @@ public interface AccountAPI {
             @Field("username") String username,
             @Field("password") String password
     );
+
+    @POST("updateUser.php")
+    @FormUrlEncoded
+    Observable<AccountModel> updateUser(
+            @Field("id") int id,
+            @Field("password") String password,
+            //@Field("role") String role,
+            @Field("fullname") String fullname,
+            @Field("imageAva") String imageAva,
+            @Field("defaultAdress") String defaultAdress,
+            @Field("email") String email,
+            @Field("phone") String phone
+    );
 }

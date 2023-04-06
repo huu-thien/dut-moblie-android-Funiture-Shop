@@ -12,17 +12,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.AndroidFunitureShopApp.databinding.LoginBinding;
 import com.AndroidFunitureShopApp.model.Account.Account;
+import com.AndroidFunitureShopApp.model.Account.UserInfo;
+import com.AndroidFunitureShopApp.view.AccountFragment;
 import com.AndroidFunitureShopApp.viewmodel.AccountAPIService;
 
+import java.io.Serializable;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import timber.log.Timber;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginBinding binding;
+    private String id;
     AccountAPIService accountAPIService;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -32,6 +37,18 @@ public class LoginActivity extends AppCompatActivity {
         binding = LoginBinding.inflate(getLayoutInflater());
         View viewRoot = binding.getRoot();
         setContentView(viewRoot);
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
+
+        binding.btnTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), AccountFragment.class);
+
+            }
+        });
 
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -66,26 +83,22 @@ public class LoginActivity extends AppCompatActivity {
                     .subscribe(
                             accountModel -> {
                                 if (accountModel.isSuccess()){
-                                    Bundle bundle = new Bundle();
                                     Account account = accountModel.getResult().get(0);
-                                    //Account account = accounts.get(0);
                                     String role = account.getRole().toString();
-                                    String id = String.valueOf(account.getId());
+                                    UserInfo.userInfo = account;
+
                                     if(role.equals("user")){
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        bundle.putString("key", id);
+                                        Intent intent = new Intent(this, MainActivity.class);
                                         startActivity(intent);
                                         finish();
                                     } else if (role.equals("admin")){
                                         Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
-                                        bundle.putString("key", id);
                                         startActivity(intent);
                                         finish();
                                     }
                                     Toast.makeText(getApplicationContext(), accountModel.getMessage(), Toast.LENGTH_SHORT).show();
                                 }else {
                                     Toast.makeText(getApplicationContext(), accountModel.getMessage(), Toast.LENGTH_SHORT).show();
-
                                 }
                             },
                             throwable -> {
@@ -94,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                     ));
         }
     }
+
 
     @Override
     protected void onStart() {

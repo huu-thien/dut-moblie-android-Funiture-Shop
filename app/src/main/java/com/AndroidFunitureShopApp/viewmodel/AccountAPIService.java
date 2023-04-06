@@ -33,4 +33,8 @@ public class AccountAPIService {
     public Observable<AccountModel> login(String username, String password) {
         return api.login(username, password);
     }
+
+    public Observable<AccountModel> UpdateUser(int id, String password, String fullname, String imageAva, String defaultAdress, String email, String phone) {
+        return api.updateUser(id, password, fullname, imageAva, defaultAdress, email, phone);
+    }
 }

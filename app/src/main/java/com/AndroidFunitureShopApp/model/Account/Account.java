@@ -5,7 +5,7 @@ public class Account {
     private String username;
     private String password;
     private String role;
-    private String fullName;
+    private String fullname;
     private String imageAva;
     private String defaultAdress;
     private String phone;
@@ -16,7 +16,7 @@ public class Account {
         this.username = username;
         this.password = password;
         this.role = role;
-        this.fullName = fullName;
+        this.fullname = fullName;
         this.imageAva = imageAva;
         this.defaultAdress = defaultAdress;
         this.phone = phone;
@@ -48,10 +48,10 @@ public class Account {
         this.role = role;
     }
     public String getFullName() {
-        return fullName;
+        return fullname;
     }
     public void setFullName(String fullName) {
-        this.fullName = fullName;
+        this.fullname = fullName;
     }
     public String getImageAva() {
         return imageAva;

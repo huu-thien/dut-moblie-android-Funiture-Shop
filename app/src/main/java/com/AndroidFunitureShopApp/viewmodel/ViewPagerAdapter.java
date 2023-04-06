@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.AndroidFunitureShopApp.MainActivity;
 import com.AndroidFunitureShopApp.view.AccountFragment;
 import com.AndroidFunitureShopApp.view.CartsFragment;
 import com.AndroidFunitureShopApp.view.CategoriesFragment;

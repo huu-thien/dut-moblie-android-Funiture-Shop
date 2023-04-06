@@ -24,6 +24,7 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.AndroidFunitureShopApp.databinding.ActivityMainBinding;
+import com.AndroidFunitureShopApp.view.AccountFragment;
 import com.AndroidFunitureShopApp.viewmodel.CartsListData;
 import com.AndroidFunitureShopApp.viewmodel.ViewPagerAdapter;
 import com.bumptech.glide.Glide;
@@ -51,18 +52,29 @@ public class MainActivity extends AppCompatActivity {
             CartsListData.cartItemList = new ArrayList<>();
         }
 
+        SetUserInfo();
+
+    }
+
+    private void SetUserInfo() {
+        AccountFragment fragment = new AccountFragment();
+        Intent intent = getIntent();
+        String user_id = intent.getStringExtra("account_ID");
+        Bundle bundle = new Bundle();
+        bundle.putString("account_ID", user_id);
+        fragment.setArguments(bundle);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences sharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE);
-        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-        if (!isLoggedIn) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//        SharedPreferences sharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE);
+//        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+//        if (!isLoggedIn) {
+//            Intent intent = new Intent(this, LoginActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
     }
 
     //Click vào mỗi item dưới navigation bottom thì hiện fragment tương ứng

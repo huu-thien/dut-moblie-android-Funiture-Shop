@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.AndroidFunitureShopApp.databinding.ActivityRegisterBinding;
 import com.AndroidFunitureShopApp.model.Account.AccountAPI;
 import com.AndroidFunitureShopApp.model.Account.AccountModel;
+import com.AndroidFunitureShopApp.model.Account.UserInfo;
 import com.AndroidFunitureShopApp.view.AccountFragment;
 import com.AndroidFunitureShopApp.viewmodel.AccountAPIService;
 
