@@ -1,5 +1,6 @@
 package com.AndroidFunitureShopApp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.AndroidFunitureShopApp.EnterDeliveryInforActivity;
 import com.AndroidFunitureShopApp.R;
 import com.AndroidFunitureShopApp.databinding.FragmentCartsBinding;
 import com.AndroidFunitureShopApp.databinding.FragmentCategoriesBinding;
@@ -70,6 +72,13 @@ public class CartsFragment extends Fragment {
         } else {
             binding.txtNote.setVisibility(View.VISIBLE);
         }
+        binding.btnMuahang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EnterDeliveryInforActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
