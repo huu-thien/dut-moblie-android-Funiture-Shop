@@ -56,13 +56,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences sharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE);
-        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-        if (!isLoggedIn) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//        SharedPreferences sharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE);
+//        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+//        if (!isLoggedIn) {
+//            Intent intent = new Intent(this, LoginActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
     }
 
     //Click vào mỗi item dưới navigation bottom thì hiện fragment tương ứng

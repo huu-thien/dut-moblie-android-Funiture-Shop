@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(){
+        System.out.print("login");
         String username = binding.etEmail.getText().toString().trim();
         String password = binding.etPassword.getText().toString().trim();
         accountAPIService = new AccountAPIService();
@@ -73,12 +74,13 @@ public class LoginActivity extends AppCompatActivity {
                                     String id = String.valueOf(account.getId());
                                     if(role.equals("user")){
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        bundle.putString("key", id);
+                                        Log.d("DEBUG","user");
+                                        System.out.print("user");
                                         startActivity(intent);
                                         finish();
                                     } else if (role.equals("admin")){
                                         Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
-                                        bundle.putString("key", id);
+                                        System.out.print("admin");
                                         startActivity(intent);
                                         finish();
                                     }
