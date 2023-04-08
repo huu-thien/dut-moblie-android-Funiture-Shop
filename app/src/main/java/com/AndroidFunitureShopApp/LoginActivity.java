@@ -85,10 +85,11 @@ public class LoginActivity extends AppCompatActivity {
                                 if (accountModel.isSuccess()){
                                     Account account = accountModel.getResult().get(0);
                                     String role = account.getRole().toString();
+                                    Log.d("DEBUG", "Account");
                                     UserInfo.userInfo = account;
 
                                     if(role.equals("user")){
-                                        System.out.print("user");
+                                        Log.d("DEBUG","user");
                                         Intent intent = new Intent(this, MainActivity.class);
                                         startActivity(intent);
                                         finish();

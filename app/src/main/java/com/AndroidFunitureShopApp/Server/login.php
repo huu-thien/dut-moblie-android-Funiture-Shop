@@ -10,7 +10,7 @@ $data = mysqli_query($conn, $query);
 $result = array();
 
 while ($row = mysqli_fetch_assoc($data)) {
-    $result[] = ($row);
+    $result[] = $row;
 }
 
 if(!empty($result)) {
@@ -18,14 +18,15 @@ if(!empty($result)) {
         'success' => true,
         'message' => 'Success',
         'result' => $result
-    ]
-
-    ;
+    ];
 } else {
     $arr = [
         'success' => false,
         'message' => 'Unsuccess',
-        'result' => $result
+        'result' => null
     ];
 }
+
+header('Content-type: application/json');
 print_r(json_encode($arr));
+?>
