@@ -13,12 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.AndroidFunitureShopApp.EnterDeliveryInforActivity;
-import com.AndroidFunitureShopApp.R;
 import com.AndroidFunitureShopApp.databinding.FragmentCartsBinding;
-import com.AndroidFunitureShopApp.databinding.FragmentCategoriesBinding;
 import com.AndroidFunitureShopApp.model.Cart.CartItem;
 import com.AndroidFunitureShopApp.model.Cart.CartItemAdapter;
-import com.AndroidFunitureShopApp.model.EventBus.TinhTongEvent;
+import com.AndroidFunitureShopApp.viewmodel.EventBus.TinhTongEvent;
 import com.AndroidFunitureShopApp.viewmodel.CartsListData;
 
 import org.greenrobot.eventbus.EventBus;

@@ -7,20 +7,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.AndroidFunitureShopApp.Interface.IImageClickListenner;
 import com.AndroidFunitureShopApp.R;
-import com.AndroidFunitureShopApp.model.EventBus.TinhTongEvent;
-import com.AndroidFunitureShopApp.viewmodel.CartsListData;
+import com.AndroidFunitureShopApp.viewmodel.EventBus.TinhTongEvent;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Viewholder> {
