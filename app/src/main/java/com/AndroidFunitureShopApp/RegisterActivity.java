@@ -70,13 +70,13 @@ public class RegisterActivity extends AppCompatActivity {
         String str_phone = "";
 
         if(TextUtils.isEmpty(str_username)){
-            Toast.makeText(getApplicationContext(), "Please, enter your username!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please enter your username!", Toast.LENGTH_SHORT).show();
         }   else if(TextUtils.isEmpty(str_fullname)){
-            Toast.makeText(getApplicationContext(), "Please, enter your name!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please enter your name!", Toast.LENGTH_SHORT).show();
         }   else if(TextUtils.isEmpty(str_password)){
-            Toast.makeText(getApplicationContext(), "Please, enter your password!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please enter your password!", Toast.LENGTH_SHORT).show();
         }   else if(TextUtils.isEmpty(str_repass)){
-            Toast.makeText(getApplicationContext(), "Please, Reenter your password!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please re_enter your password!", Toast.LENGTH_SHORT).show();
         }   else {
             if(str_password.equals(str_repass)){
                 compositeDisposable.add(accountAPIService.register(str_username, str_password, str_role, str_fullname, str_imageAva, str_defaultAdress, str_email, str_phone)

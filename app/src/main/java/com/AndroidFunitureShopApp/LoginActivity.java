@@ -88,10 +88,12 @@ public class LoginActivity extends AppCompatActivity {
                                     UserInfo.userInfo = account;
 
                                     if(role.equals("user")){
+                                        System.out.print("user");
                                         Intent intent = new Intent(this, MainActivity.class);
                                         startActivity(intent);
                                         finish();
                                     } else if (role.equals("admin")){
+                                        System.out.print("admin");
                                         Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                                         startActivity(intent);
                                         finish();
