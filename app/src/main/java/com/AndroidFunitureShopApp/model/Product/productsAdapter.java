@@ -24,7 +24,9 @@ import com.AndroidFunitureShopApp.viewmodel.CartsListData;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class productsAdapter extends RecyclerView.Adapter<productsAdapter.Viewholder> implements Filterable {
     private static List<Product> products;
@@ -64,7 +66,32 @@ public class productsAdapter extends RecyclerView.Adapter<productsAdapter.Viewho
 
     @Override
     public Filter getFilter() {
-        return null;
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String input = constraint.toString().toLowerCase();
+                List<Product> fillterProducts = new ArrayList<Product>();
+                if (input.isEmpty()){
+                    fillterProducts.addAll(productsCopy);
+                }   else{
+                        for (Product product : productsCopy){
+                            if (product.getName().toLowerCase().contains(input)){
+                                fillterProducts.add(product);
+                            }
+                        }
+                    }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = fillterProducts;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                products = new ArrayList<>();
+                products.addAll((List)results.values);
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class Viewholder extends RecyclerView.ViewHolder {

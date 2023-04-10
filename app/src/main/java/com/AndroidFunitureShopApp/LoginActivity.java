@@ -42,15 +42,6 @@ public class LoginActivity extends AppCompatActivity {
             Timber.plant(new Timber.DebugTree());
         }
 
-        binding.btnTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), AccountFragment.class);
-
-            }
-        });
-
-
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

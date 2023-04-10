@@ -87,4 +87,6 @@ public class CategoriesFragment extends Fragment {
                 });
 
     }
+
+
 }
