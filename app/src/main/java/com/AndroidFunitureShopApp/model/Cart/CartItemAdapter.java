@@ -34,7 +34,6 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Viewho
         notifyDataSetChanged();
     }
 
-
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

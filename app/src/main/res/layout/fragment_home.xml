@@ -47,30 +47,3 @@
                     </LinearLayout>
         </LinearLayout>
     </ScrollView>
-<!--    <ViewFlipper-->
-<!--        android:id="@+id/vf_slider"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="200dp"-->
-<!--        android:paddingLeft="20dp"-->
-<!--        android:paddingRight="20dp"-->
-<!--        android:paddingBottom="20dp"-->
-<!--        android:background="#376553"-->
-<!--        >-->
-
-<!--    </ViewFlipper>-->
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/rv_products"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_marginLeft="5dp"-->
-<!--            android:layout_marginRight="5dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            ></androidx.recyclerview.widget.RecyclerView>-->
-<!--    </LinearLayout>-->
-<!--</LinearLayout>-->

@@ -26,7 +26,6 @@ import com.squareup.picasso.Picasso;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class productsAdapter extends RecyclerView.Adapter<productsAdapter.Viewholder> implements Filterable {
     private static List<Product> products;
@@ -64,35 +63,7 @@ public class productsAdapter extends RecyclerView.Adapter<productsAdapter.Viewho
         return products.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                String input = constraint.toString().toLowerCase();
-                List<Product> fillterProducts = new ArrayList<Product>();
-                if (input.isEmpty()){
-                    fillterProducts.addAll(productsCopy);
-                }   else{
-                        for (Product product : productsCopy){
-                            if (product.getName().toLowerCase().contains(input)){
-                                fillterProducts.add(product);
-                            }
-                        }
-                    }
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = fillterProducts;
-                return filterResults;
-            }
 
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                products = new ArrayList<>();
-                products.addAll((List)results.values);
-                notifyDataSetChanged();
-            }
-        };
-    }
 
     public class Viewholder extends RecyclerView.ViewHolder {
         public ImageView imageUrl;
@@ -133,5 +104,34 @@ public class productsAdapter extends RecyclerView.Adapter<productsAdapter.Viewho
                 }
             });
         }
+    }
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String input = charSequence.toString();
+                List<Product> StationstListFilter = new ArrayList<>();
+                if (input.isEmpty()) {
+                    StationstListFilter.addAll(productsCopy);
+                } else {
+                    for (Product dog : productsCopy) {
+                        if (dog.getName().toLowerCase().contains(input.toLowerCase())) {
+                            StationstListFilter.add(dog);
+                        }
+                    }
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = StationstListFilter;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                products = (List<Product>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }
