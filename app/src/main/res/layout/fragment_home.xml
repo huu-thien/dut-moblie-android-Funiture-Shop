@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    android:layout_margin="10dp"-->
-<!--    android:orientation="vertical"-->
-<!--    tools:context=".view.HomeFragment">-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="#f3eef3"
+    android:orientation="vertical"
+    tools:context=".view.HomeFragment">
 
     <ScrollView
 
@@ -25,10 +26,13 @@
                         android:id="@+id/vf_slider"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingBottom="20dp"
-                        android:background="#376553"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+
+                        android:background="#f3eef3"
+
                         >
                     </ViewFlipper>
 
@@ -39,11 +43,13 @@
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_products"
+                            android:background="#f3eef3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="5dp"></androidx.recyclerview.widget.RecyclerView>
                     </LinearLayout>
         </LinearLayout>
     </ScrollView>
+</LinearLayout>

@@ -19,6 +19,7 @@
 
     <LinearLayout
         android:padding="5dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -27,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="SONGESAND"
             android:gravity="center_horizontal"
             android:textSize="22sp"
@@ -43,6 +45,7 @@
         android:lineHeight="25dp"
         android:textSize="16dp"
         android:padding="20dp"
+        android:fontFamily="@font/poppins_regular"
         android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -56,11 +59,12 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:lineHeight="25dp"
             android:text="Price: "
             android:textSize="20sp"
-            android:lineHeight="25dp"
             android:textStyle="bold|italic"></TextView>
         <TextView
             android:id="@+id/tv_product_detail_price"
@@ -68,6 +72,7 @@
             android:layout_height="wrap_content"
             android:text="$99"
             android:textColor="#376553"
+            android:fontFamily="@font/poppins_semibold"
             android:textSize="25sp"
             android:lineHeight="25dp"
             android:textStyle="bold|italic"></TextView>
@@ -77,8 +82,9 @@
             android:id="@+id/btn_add_to_car_produdct_detail"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:backgroundTint="#F44336"
+            android:backgroundTint="#fd6b68"
             android:text="Add to cart"
+            android:fontFamily="@font/poppins_regular"
             android:textColor="@color/white"
             android:textStyle="bold">
         </Button>

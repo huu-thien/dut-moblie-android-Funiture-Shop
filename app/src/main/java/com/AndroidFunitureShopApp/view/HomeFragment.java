@@ -54,6 +54,7 @@ public class HomeFragment extends Fragment {
 
     private void ActionSlider() {
         List<String> sliders = new ArrayList<>();
+        sliders.add("https://theme.hstatic.net/200000584705/1001023835/14/home_product_pos_image.png?v=8");
         sliders.add("https://hstatic.net/336/1000150336/1000203404/slideshow_3.jpg?v=24");
         sliders.add("https://theme.hstatic.net/200000584705/1000969925/14/home_slider_item_image_3.png?v=2524");
         sliders.add("https://hstatic.net/336/1000150336/1000203404/slideshow_2.jpg?v=24");
