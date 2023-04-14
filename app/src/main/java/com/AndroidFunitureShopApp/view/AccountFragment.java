@@ -158,7 +158,7 @@ public class AccountFragment extends Fragment {
         if(UserInfo.userInfo.getUsername() != null) binding.etUsername.setText(UserInfo.userInfo.getUsername());
         if(UserInfo.userInfo.getFullName() != null) binding.etFullName.setText(UserInfo.userInfo.getFullName());
         if(UserInfo.userInfo.getPhone() != null) binding.etPhone.setText(UserInfo.userInfo.getPhone());
-        if(UserInfo.userInfo.getEmail() != null) binding.etEmail.setText(UserInfo.userInfo.getEmail());
+//        if(UserInfo.userInfo.getEmail() != null) binding.etEmail.setText(UserInfo.userInfo.getEmail());
         if(UserInfo.userInfo.getDefaultAdress() != null) binding.etAddress.setText(UserInfo.userInfo.getDefaultAdress());
     }
 
@@ -205,7 +205,7 @@ public class AccountFragment extends Fragment {
         String password = binding.etPassword.getText().toString().trim();
         String newpass = binding.etNewPassword.getText().toString().trim();
         String fullname = binding.etFullName.getText().toString().trim();
-        String email = binding.etEmail.getText().toString().trim();
+//        String email = binding.etEmail.getText().toString().trim();
         String defaultAdress = binding.etAddress.getText().toString().trim();
         String phone = binding.etPhone.getText().toString().trim();
         String imageAva = "";
@@ -221,15 +221,17 @@ public class AccountFragment extends Fragment {
             Toast.makeText(context, "Please, enter your Fullname!", Toast.LENGTH_SHORT).show();
         }   else if(TextUtils.isEmpty(password)){
             Toast.makeText(context, "Please, enter your password!", Toast.LENGTH_SHORT).show();
-        }   else if(TextUtils.isEmpty(email)){
-            Toast.makeText(context, "Please, enter your email!", Toast.LENGTH_SHORT).show();
-        }   else if(TextUtils.isEmpty(defaultAdress)){
+        }
+//        else if(TextUtils.isEmpty(email)){
+//            Toast.makeText(context, "Please, enter your email!", Toast.LENGTH_SHORT).show();
+//        }
+        else if(TextUtils.isEmpty(defaultAdress)){
             Toast.makeText(context, "Please, enter your address!", Toast.LENGTH_SHORT).show();
         }   else if(TextUtils.isEmpty(phone)){
             Toast.makeText(context, "Please, enter your phone!", Toast.LENGTH_SHORT).show();
         }   else {
             if(!password.isEmpty() && newpass.isEmpty() && password.equals(UserInfo.userInfo.getPassword())){
-                compositeDisposable.add(accountAPIService.UpdateUser(id, password, fullname, imageAva, defaultAdress, email, phone)
+                compositeDisposable.add(accountAPIService.UpdateUser(id, password, fullname, imageAva, defaultAdress, "test@email", phone)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -248,7 +250,7 @@ public class AccountFragment extends Fragment {
                         ));
             }
             else if(!password.isEmpty() && !newpass.isEmpty() && password.equals(UserInfo.userInfo.getPassword())){
-                compositeDisposable.add(accountAPIService.UpdateUser(id, newpass, fullname, imageAva, defaultAdress, email, phone)
+                compositeDisposable.add(accountAPIService.UpdateUser(id, newpass, fullname, imageAva, defaultAdress, "test@email", phone)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
