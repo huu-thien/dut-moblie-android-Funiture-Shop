@@ -1,6 +1,6 @@
 package com.AndroidFunitureShopApp.model.Order;
 
-import android.database.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 import com.AndroidFunitureShopApp.model.Account.AccountModel;
 
@@ -19,5 +19,11 @@ public interface OrderAPI {
             @Field("address") String address,
             @Field("quantity") int quantity,
             @Field("orderDetail") String orderDetail
+    );
+
+    @POST("viewOrder.php")
+    @FormUrlEncoded
+    Observable<OrderModel> viewOrder(
+            @Field("idUser") int idUser
     );
 }

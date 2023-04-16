@@ -2,7 +2,7 @@ package com.AndroidFunitureShopApp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.database.Observable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,23 +10,22 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.AndroidFunitureShopApp.databinding.ActivityPaymentBinding;
-import com.AndroidFunitureShopApp.model.Account.Account;
-import com.AndroidFunitureShopApp.model.Order.OrderAPI;
 import com.AndroidFunitureShopApp.viewmodel.OrderAPIService;
 import com.AndroidFunitureShopApp.viewmodel.Utils;
 import com.google.gson.Gson;
 
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import retrofit2.Retrofit;
 
 public class PaymentActivity extends AppCompatActivity {
 
     private ActivityPaymentBinding binding;
     private OrderAPIService orderAPIService;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
+    long totalPrice;
+    int totalItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,8 @@ public class PaymentActivity extends AppCompatActivity {
         setContentView(viewRoot);
         orderAPIService = new OrderAPIService();
 
-        long totalPrice = getIntent().getLongExtra("totalPrice", 0);
+        totalPrice = getIntent().getLongExtra("totalPrice", 0);
+        countItem();
 
         binding.txtTotalPrice.setText(totalPrice + "$");
         binding.txtEmail.setText(Utils.account.getEmail());
@@ -53,23 +53,39 @@ public class PaymentActivity extends AppCompatActivity {
                     int idUser = Utils.account.getId();
                     Log.d("test", new Gson().toJson(Utils.cartItemList));
 
-//                     compositeDisposable.add(orderAPIService.createOrder(strEmail, strPhone, totalPrice, idUser, strAddress, 2, new Gson().toJson(Utils.cartItemList))
-//                             .subscribeOn(Schedulers.io())
-//                             .observeOn(AndroidSchedulers.mainThread())
-//                     );
+                    compositeDisposable.add(orderAPIService.createOrder(strEmail, strPhone, totalPrice, idUser, strAddress, totalItem, new Gson().toJson(Utils.cartItemList))
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(accountModel -> {
+                                Toast.makeText(getApplicationContext(), "Success add order", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }, throwable -> {
+                                Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                            }));
+
                 }
             }
         });
+
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//    }
-//
-//    @Override
-//    protected void onDestroy() {
-//        compositeDisposable.clear();
-//        super.onDestroy();
-//    }
+    private void countItem() {
+        totalItem = 0;
+        for (int i = 0; i < Utils.cartItemList.size(); i++) {
+            totalItem += Utils.cartItemList.get(i).getQuantity();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
+    }
 }

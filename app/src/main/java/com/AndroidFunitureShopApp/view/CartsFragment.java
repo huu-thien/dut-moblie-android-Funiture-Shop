@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.AndroidFunitureShopApp.PaymentActivity;
+import com.AndroidFunitureShopApp.ViewOrderActivity;
 import com.AndroidFunitureShopApp.databinding.FragmentCartsBinding;
 import com.AndroidFunitureShopApp.model.Cart.CartItem;
 import com.AndroidFunitureShopApp.model.Cart.CartItemAdapter;
@@ -70,6 +72,14 @@ public class CartsFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PaymentActivity.class);
                 intent.putExtra("totalPrice", totalPrice);
+                startActivity(intent);
+            }
+        });
+
+        binding.btnViewHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ViewOrderActivity.class);
                 startActivity(intent);
             }
         });
