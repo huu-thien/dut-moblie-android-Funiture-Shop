@@ -2,18 +2,12 @@ package com.AndroidFunitureShopApp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.AndroidFunitureShopApp.databinding.ActivityMainBinding;
 import com.AndroidFunitureShopApp.databinding.ActivityProductDetailBinding;
-import com.AndroidFunitureShopApp.model.Cart.CartItem;
 import com.AndroidFunitureShopApp.model.Product.Product;
-import com.AndroidFunitureShopApp.viewmodel.CartsListData;
+import com.AndroidFunitureShopApp.viewmodel.Utils;
 import com.squareup.picasso.Picasso;
 
 public class ProductDetail extends AppCompatActivity {
@@ -40,7 +34,7 @@ public class ProductDetail extends AppCompatActivity {
         binding.btnAddToCarProdudctDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CartsListData.addToCart(product);
+                Utils.addToCart(product);
             }
         });
     }

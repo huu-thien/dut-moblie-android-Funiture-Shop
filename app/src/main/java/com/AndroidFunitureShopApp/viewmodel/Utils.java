@@ -1,14 +1,15 @@
 package com.AndroidFunitureShopApp.viewmodel;
 
+import com.AndroidFunitureShopApp.model.Account.Account;
 import com.AndroidFunitureShopApp.model.Cart.CartItem;
 import com.AndroidFunitureShopApp.model.Product.Product;
 
 import java.util.List;
 
-public class CartsListData {
-    //private static final String BASE_URL = "http://192.168.68.201:2024/furnitureshop_v2/"; // ip của Vanh
+public class Utils {
     private static final String BASE_URL = _Constant.baseUrl;
     public static List<CartItem> cartItemList;
+    public static Account account;
 
     public static void addToCart(Product product) {
         int id = product.getId();
@@ -17,28 +18,28 @@ public class CartsListData {
         int price = product.getPrice();
         int quantity = 1;
 
-        if (CartsListData.cartItemList.size() > 0) {
+        if (Utils.cartItemList.size() > 0) {
             boolean check = true;
-            for (int i = 0; i < CartsListData.cartItemList.size(); i++) {
-                if (CartsListData.cartItemList.get(i).getId() == id) {
-                    CartsListData.cartItemList.get(i).setQuantity(CartsListData.cartItemList.get(i).getQuantity() + 1);
+            for (int i = 0; i < Utils.cartItemList.size(); i++) {
+                if (Utils.cartItemList.get(i).getId() == id) {
+                    Utils.cartItemList.get(i).setQuantity(Utils.cartItemList.get(i).getQuantity() + 1);
                     check = false;
                     break;
                 }
             }
             if (check) {
                 CartItem cartItem = new CartItem(id, name, quantity, img, price);
-                CartsListData.cartItemList.add(cartItem);
+                Utils.cartItemList.add(cartItem);
             }
         } else {
             CartItem cartItem = new CartItem(id, name, quantity, img, price);
-            CartsListData.cartItemList.add(cartItem);
+            Utils.cartItemList.add(cartItem);
         }
     }
 
     public static long calTotalPrice() {
         long totalPrice = 0;
-        for (CartItem item : CartsListData.cartItemList) {
+        for (CartItem item : Utils.cartItemList) {
             totalPrice += item.getQuantity() * item.getPrice();
         }
         return totalPrice;

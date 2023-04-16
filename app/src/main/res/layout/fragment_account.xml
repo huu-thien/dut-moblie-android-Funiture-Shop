@@ -1,690 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#f3eef3">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingLeft="20dp"
-        android:paddingBottom="10dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ciAvatar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:maxWidth="123dp"
-            android:src="@drawable/facebook">
-
-        </de.hdodenhof.circleimageview.CircleImageView>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/selectPhoto"
-            android:layout_marginLeft="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:backgroundTint="#fff"
-            android:src="@drawable/ic_baseline_photo_camera_24"
-            app:fabSize="mini"
-            app:layout_constraintEnd_toEndOf="@id/ciAvatar" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:paddingLeft="20dp">
-
-            <TextView
-                android:id="@+id/etFullName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Emma Phillips"
-                android:textColor="#1e3167"
-                android:textSize="26sp"></TextView>
-
-            <TextView
-                android:id="@+id/etUsername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:backgroundTint="@null"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Fashion model"
-                android:textColor="#1e3167"
-                android:textSize="14sp"></TextView>
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="15dp"
-        android:paddingLeft="20dp"
-        android:layout_height="wrap_content">
-
-        <ImageView
-
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/call">
-
-        </ImageView>
-        <EditText
-            android:id="@+id/etPhone"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_width="315dp"
-            android:layout_marginLeft="20dp"
-            android:layout_height="40dp"
-            android:textColorHint="#cbcad1"
-            android:backgroundTint="#fff"
-            android:background="@drawable/rounded_border"
-            android:textSize="14sp">
-        </EditText>
-
-    </LinearLayout>
-<!--    <LinearLayout-->
-<!--        android:layout_marginBottom="10dp"-->
-<!--        android:paddingLeft="20dp"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:gravity="center_vertical"-->
-<!--        android:layout_height="wrap_content">-->
-
-<!--        <ImageView-->
-
-<!--            android:layout_width="30dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:src="@drawable/message">-->
-
-<!--        </ImageView>-->
-<!--        <EditText-->
-<!--            android:id="@+id/etEmail"-->
-<!--            android:fontFamily="@font/poppins_regular"-->
-<!--            android:layout_width="315dp"-->
-<!--            android:layout_marginLeft="20dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:textColorHint="#cbcad1"-->
-<!--            android:backgroundTint="#fff"-->
-<!--            android:background="@drawable/rounded_border"-->
-<!--            android:textSize="14sp">-->
-
-<!--        </EditText>-->
-
-<!--    </LinearLayout>-->
-    <LinearLayout
-        android:layout_marginBottom="15dp"
-        android:paddingLeft="20dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:layout_height="wrap_content">
-
-        <ImageView
-
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/location">
-
-        </ImageView>
-        <EditText
-            android:id="@+id/etAddress"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_width="315dp"
-            android:layout_marginLeft="20dp"
-            android:layout_height="40dp"
-            android:textColorHint="#cbcad1"
-            android:backgroundTint="#fff"
-            android:background="@drawable/rounded_border"
-            android:textSize="14sp">
-
-        </EditText>
-
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="15dp"
-        android:layout_height="wrap_content">
-
-        <ImageView
-
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/password">
-
-        </ImageView>
-        <EditText
-            android:id="@+id/etPassword"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_width="315dp"
-            android:layout_marginLeft="20dp"
-            android:layout_height="40dp"
-            android:textColorHint="#cbcad1"
-            android:backgroundTint="#fff"
-            android:background="@drawable/rounded_border"
-            android:textSize="14sp">
-
-        </EditText>
-
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:paddingBottom="20dp"
-        android:paddingLeft="20dp"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/rotate">
-
-        </ImageView>
-        <EditText
-            android:id="@+id/etNewPassword"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_width="315dp"
-            android:layout_marginLeft="20dp"
-            android:layout_height="40dp"
-            android:textColorHint="#cbcad1"
-            android:backgroundTint="#fff"
-            android:background="@drawable/rounded_border"
-            android:textSize="14sp">
-
-        </EditText>
-
-    </LinearLayout>
-    <Button
-        android:id="@+id/btn_save"
-        android:fontFamily="@font/poppins_semibold"
-        android:backgroundTint="#fd6b68"
-        style="@android:style/Widget.Button"
-        android:layout_width="340dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center"
-        android:textSize="16sp"
-        android:letterSpacing="0.1"
-        android:textColor="#fff"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/btn_background"
-        android:text="Save"></Button>
-
-
-    <View
-        android:id="@+id/line1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#f0f2f5" />
-    <LinearLayout
-        android:background="#fff"
-
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="$140.00"
-                android:textColor="#394a7e"
-                android:textSize="26dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
-            <TextView
-                android:text="Wallet"
-                android:textSize="14dp"
-                android:textColor="#666666"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
-        </LinearLayout>
-        <View
-            android:id="@+id/line3"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#f0f2f5" />
-        <LinearLayout
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="12"
-                android:textColor="#394a7e"
-                android:textSize="26dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
-            <TextView
-                android:text="Orders"
-                android:textSize="14dp"
-                android:textColor="#666666"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
-        </LinearLayout>
-
-    </LinearLayout>
-    <View
-        android:id="@+id/line2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#f0f2f5" />
-
-    <LinearLayout
-        android:background="#fff"
-        android:paddingLeft="20dp"
+    tools:context=".view.AccountFragment"
+    >
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
+        tools:context="com.instamobile.firebaseStarterKit.ui.fragment.signUp.SignUpFragment">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingBottom="12dp">
+            android:layout_height="match_parent">
 
-            <ImageView
+            <FrameLayout
+                android:id="@+id/frameLayoutAccount"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#00FFFFFF"
+                android:elevation="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/heart">
+            </FrameLayout>
 
-            </ImageView>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ciAvatar"
+                android:layout_width="99dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_person_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/selectPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_camera"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toBottomOf="@id/ciAvatar"
+                app:layout_constraintEnd_toEndOf="@id/ciAvatar"
+                tools:ignore="SpeakableTextPresentCheck" />
             <TextView
+                android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:paddingLeft="20dp"
-                android:text="Your favorite"
-                android:textColor="#233266"
-                android:textSize="16sp">
-
-            </TextView>
-
-        </LinearLayout>
-        <!--    <LinearLayout-->
-        <!--        android:orientation="horizontal"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:gravity="center_vertical"-->
-        <!--        android:paddingBottom="12dp"-->
-        <!--        android:layout_height="wrap_content">-->
-
-        <!--        <ImageView-->
-
-        <!--            android:layout_width="30dp"-->
-        <!--            android:layout_height="30dp"-->
-        <!--            android:src="@drawable/payment">-->
-
-        <!--        </ImageView>-->
-        <!--        <TextView-->
-        <!--            android:fontFamily="@font/poppins_semibold"-->
-        <!--            android:paddingLeft="20dp"-->
-        <!--            android:textSize="16sp"-->
-        <!--            android:textColor="#233266"-->
-        <!--            android:text="Payment"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content">-->
-
-        <!--        </TextView>-->
-
-        <!--    </LinearLayout>-->
-        <!--    <LinearLayout-->
-        <!--        android:orientation="horizontal"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:gravity="center_vertical"-->
-        <!--        android:paddingBottom="12dp"-->
-        <!--        android:layout_height="wrap_content">-->
-
-        <!--        <ImageView-->
-
-        <!--            android:layout_width="30dp"-->
-        <!--            android:layout_height="30dp"-->
-        <!--            android:src="@drawable/communication">-->
-
-        <!--        </ImageView>-->
-        <!--        <TextView-->
-        <!--            android:fontFamily="@font/poppins_semibold"-->
-        <!--            android:paddingLeft="20dp"-->
-        <!--            android:textSize="16sp"-->
-        <!--            android:textColor="#233266"-->
-        <!--            android:text="Tell your friend"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content">-->
-
-        <!--        </TextView>-->
-
-        <!--    </LinearLayout>-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingBottom="12dp">
-
-            <ImageView
-
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/megaphone">
-
-            </ImageView>
-
-            <TextView
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/rounded_border"
+                android:hint="Username"
+                android:imeOptions="actionNext"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ciAvatar"
+                android:minHeight="48dp" />
+            <EditText
+                android:id="@+id/etFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:paddingLeft="20dp"
-                android:text="Promotions"
-                android:textColor="#233266"
-                android:textSize="16sp">
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/rounded_border"
+                android:hint="Full name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etUsername"
+                android:minHeight="48dp" />
 
-            </TextView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingBottom="12dp">
-
-            <ImageView
-
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/gear">
-
-            </ImageView>
-
-            <TextView
+            <EditText
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:paddingLeft="20dp"
-                android:text="Settings"
-                android:textColor="#233266"
-                android:textSize="16sp">
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/rounded_border"
+                android:hint="Email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etFullName" />
 
-            </TextView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingBottom="12dp">
-
-            <ImageView
-
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/power">
-
-            </ImageView>
-
-            <TextView
+            <EditText
+                android:id="@+id/etPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:paddingLeft="20dp"
-                android:text="Log out"
-                android:textColor="#ff0000"
-                android:textSize="16sp">
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/rounded_border"
+                android:hint="Phone"
+                android:imeOptions="actionNext"
+                android:inputType="phone"
+                android:minHeight="48dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etEmail" />
 
-            </TextView>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-</LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <EditText
+                android:id="@+id/etAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/rounded_border"
+                android:hint="Address"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etPhone" />
 
 
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/rounded_border"
+                android:hint="Password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etAddress" />
+
+            <EditText
+                android:id="@+id/etNewPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/rounded_border"
+                android:hint="New Password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
 
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="100dp"
+                android:background="@drawable/sign_up_button_selector"
+                android:gravity="center"
+                android:text="Save"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPassword" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
-
-
-<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    tools:context=".view.AccountFragment"-->
-<!--    >-->
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        tools:context="com.instamobile.firebaseStarterKit.ui.fragment.signUp.SignUpFragment">-->
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <FrameLayout-->
-<!--                android:id="@+id/frameLayoutAccount"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="0dp"-->
-<!--                android:background="#00FFFFFF"-->
-<!--                android:elevation="7dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent">-->
-
-<!--            </FrameLayout>-->
-
-<!--            <de.hdodenhof.circleimageview.CircleImageView-->
-<!--                android:id="@+id/ciAvatar"-->
-<!--                android:layout_width="99dp"-->
-<!--                android:layout_height="87dp"-->
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginEnd="32dp"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:src="@drawable/ic_baseline_person_24"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                tools:ignore="MissingConstraints" />-->
-
-<!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--                android:id="@+id/selectPhoto"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:src="@drawable/ic_camera"-->
-<!--                app:fabSize="mini"-->
-<!--                app:layout_constraintBottom_toBottomOf="@id/ciAvatar"-->
-<!--                app:layout_constraintEnd_toEndOf="@id/ciAvatar"-->
-<!--                tools:ignore="SpeakableTextPresentCheck" />-->
-<!--            <TextView-->
-<!--                android:id="@+id/etUsername"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginEnd="32dp"-->
-<!--                android:background="@drawable/rounded_border"-->
-<!--                android:hint="Username"-->
-<!--                android:imeOptions="actionNext"-->
-<!--                android:textSize="20sp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/ciAvatar"-->
-<!--                android:minHeight="48dp" />-->
-<!--            <EditText-->
-<!--                android:id="@+id/etFullName"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginEnd="32dp"-->
-<!--                android:background="@drawable/rounded_border"-->
-<!--                android:hint="Full name"-->
-<!--                android:imeOptions="actionNext"-->
-<!--                android:inputType="text"-->
-<!--                android:textSize="20sp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/etUsername"-->
-<!--                android:minHeight="48dp" />-->
-
-<!--            <EditText-->
-<!--                android:id="@+id/etEmail"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginEnd="32dp"-->
-<!--                android:background="@drawable/rounded_border"-->
-<!--                android:hint="Email"-->
-<!--                android:imeOptions="actionNext"-->
-<!--                android:inputType="textEmailAddress"-->
-<!--                android:minHeight="48dp"-->
-<!--                android:textSize="20sp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/etFullName" />-->
-
-<!--            <EditText-->
-<!--                android:id="@+id/etPhone"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginEnd="32dp"-->
-<!--                android:background="@drawable/rounded_border"-->
-<!--                android:hint="Phone"-->
-<!--                android:imeOptions="actionNext"-->
-<!--                android:inputType="phone"-->
-<!--                android:minHeight="48dp"-->
-<!--                android:textSize="20sp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/etEmail" />-->
-
-<!--            <EditText-->
-<!--                android:id="@+id/etAddress"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginEnd="32dp"-->
-<!--                android:background="@drawable/rounded_border"-->
-<!--                android:hint="Address"-->
-<!--                android:imeOptions="actionNext"-->
-<!--                android:inputType="text"-->
-<!--                android:minHeight="48dp"-->
-<!--                android:textSize="20sp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/etPhone" />-->
-
-
-<!--            <EditText-->
-<!--                android:id="@+id/etPassword"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginEnd="32dp"-->
-<!--                android:background="@drawable/rounded_border"-->
-<!--                android:hint="Password"-->
-<!--                android:imeOptions="actionDone"-->
-<!--                android:inputType="textPassword"-->
-<!--                android:minHeight="48dp"-->
-<!--                android:textSize="20sp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/etAddress" />-->
-
-<!--            <EditText-->
-<!--                android:id="@+id/etNewPassword"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginEnd="32dp"-->
-<!--                android:background="@drawable/rounded_border"-->
-<!--                android:hint="New Password"-->
-<!--                android:imeOptions="actionDone"-->
-<!--                android:inputType="textPassword"-->
-<!--                android:minHeight="48dp"-->
-<!--                android:textSize="20sp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/etPassword" />-->
-
-
-<!--            <Button-->
-<!--                android:id="@+id/btnSave"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="48dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_marginEnd="50dp"-->
-<!--                android:layout_marginBottom="100dp"-->
-<!--                android:background="@drawable/sign_up_button_selector"-->
-<!--                android:gravity="center"-->
-<!--                android:text="Save"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="20sp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/etNewPassword" />-->
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--    </ScrollView>-->
-<!--</FrameLayout>-->
-
+    </ScrollView>
+</FrameLayout>

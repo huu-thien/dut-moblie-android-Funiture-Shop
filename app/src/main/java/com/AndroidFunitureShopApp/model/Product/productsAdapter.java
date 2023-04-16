@@ -1,9 +1,7 @@
 package com.AndroidFunitureShopApp.model.Product;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.AndroidFunitureShopApp.ProductDetail;
 import com.AndroidFunitureShopApp.R;
-import com.AndroidFunitureShopApp.model.Cart.CartItem;
-import com.AndroidFunitureShopApp.viewmodel.CartsListData;
+import com.AndroidFunitureShopApp.viewmodel.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
@@ -99,7 +96,7 @@ public class productsAdapter extends RecyclerView.Adapter<productsAdapter.Viewho
                 @Override
                 public void onClick(View v) {
                     Product product = products.get(getAdapterPosition());
-                    CartsListData.addToCart(product);
+                    Utils.addToCart(product);
                     Toast.makeText(itemView.getContext(), "Add to cart successfuly !!", Toast.LENGTH_SHORT).show();
                 }
             });

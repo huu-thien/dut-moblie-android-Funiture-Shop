@@ -29,36 +29,37 @@
 
     <EditText
         android:id="@+id/etEmail"
-        android:fontFamily="@font/poppins_regular"
         android:layout_width="340dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
         android:layout_gravity="center"
-        android:drawablePadding="16dp"
-        android:hint="Username"
-        android:textColorHint="#cbcad1"
-        android:backgroundTint="#fff"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/rounded_border"
+        android:backgroundTint="#fff"
         android:drawableStart="@drawable/user"
-        android:textSize="16sp">
-    </EditText>
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/poppins_regular"
+        android:hint="Username"
+        android:text="user"
+        android:textColorHint="#cbcad1"
+        android:textSize="16sp"></EditText>
+
     <EditText
         android:id="@+id/etPassword"
-        android:fontFamily="@font/poppins_regular"
         android:layout_width="340dp"
         android:layout_height="60dp"
-        android:drawablePadding="16dp"
         android:layout_gravity="center"
+        android:background="@drawable/rounded_border"
+        android:backgroundTint="#fff"
+        android:drawableStart="@drawable/password"
+        android:drawableEnd="@drawable/hide"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/poppins_regular"
         android:hint="Password"
         android:inputType="textPassword"
+        android:text="123456"
         android:textColorHint="#cbcad1"
-        android:drawableEnd="@drawable/hide"
-        android:backgroundTint="#fff"
-        android:background="@drawable/rounded_border"
-        android:drawableStart="@drawable/password"
-        android:textSize="16sp">
-    </EditText>
+        android:textSize="16sp"></EditText>
     <TextView
         android:fontFamily="@font/poppins_semibold"
         android:layout_width="wrap_content"

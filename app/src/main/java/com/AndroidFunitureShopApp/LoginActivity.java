@@ -15,6 +15,7 @@ import com.AndroidFunitureShopApp.model.Account.Account;
 import com.AndroidFunitureShopApp.model.Account.UserInfo;
 import com.AndroidFunitureShopApp.view.AccountFragment;
 import com.AndroidFunitureShopApp.viewmodel.AccountAPIService;
+import com.AndroidFunitureShopApp.viewmodel.Utils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -59,39 +60,40 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void login(){
+    private void login() {
         String username = binding.etEmail.getText().toString().trim();
         String password = binding.etPassword.getText().toString().trim();
         accountAPIService = new AccountAPIService();
-        if(TextUtils.isEmpty(username)){
+        if (TextUtils.isEmpty(username)) {
             Toast.makeText(getApplicationContext(), "Please, enter your username!", Toast.LENGTH_SHORT).show();
-        }   else if(TextUtils.isEmpty(password)){
+        } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(getApplicationContext(), "Please, enter your password!", Toast.LENGTH_SHORT).show();
-        }   else {
+        } else {
             compositeDisposable.add(accountAPIService.login(username, password)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             accountModel -> {
-                                if (accountModel.isSuccess()){
+                                if (accountModel.isSuccess()) {
                                     Account account = accountModel.getResult().get(0);
                                     String role = account.getRole().toString();
                                     Log.d("DEBUG", "Account");
                                     UserInfo.userInfo = account;
+                                    Utils.account = account;
 
-                                    if(role.equals("user")){
-                                        Log.d("DEBUG","user");
+                                    if (role.equals("user")) {
+                                        Log.d("DEBUG", "user");
                                         Intent intent = new Intent(this, MainActivity.class);
                                         startActivity(intent);
                                         finish();
-                                    } else if (role.equals("admin")){
+                                    } else if (role.equals("admin")) {
                                         System.out.print("admin");
                                         Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                                         startActivity(intent);
                                         finish();
                                     }
                                     Toast.makeText(getApplicationContext(), accountModel.getMessage(), Toast.LENGTH_SHORT).show();
-                                }else {
+                                } else {
                                     Toast.makeText(getApplicationContext(), accountModel.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             },

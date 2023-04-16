@@ -1,38 +1,21 @@
 package com.AndroidFunitureShopApp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Outline;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewOutlineProvider;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
 
 import com.AndroidFunitureShopApp.databinding.ActivityMainBinding;
 import com.AndroidFunitureShopApp.view.AccountFragment;
-import com.AndroidFunitureShopApp.viewmodel.CartsListData;
+import com.AndroidFunitureShopApp.viewmodel.Utils;
 import com.AndroidFunitureShopApp.viewmodel.ViewPagerAdapter;
-import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -48,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(viewRoot);
         ChangeTab();
 
-        if (CartsListData.cartItemList == null) {
-            CartsListData.cartItemList = new ArrayList<>();
+        if (Utils.cartItemList == null) {
+            Utils.cartItemList = new ArrayList<>();
         }
 
         SetUserInfo();

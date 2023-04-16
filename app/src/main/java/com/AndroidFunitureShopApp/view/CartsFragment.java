@@ -12,12 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.AndroidFunitureShopApp.EnterDeliveryInforActivity;
+import com.AndroidFunitureShopApp.PaymentActivity;
 import com.AndroidFunitureShopApp.databinding.FragmentCartsBinding;
 import com.AndroidFunitureShopApp.model.Cart.CartItem;
 import com.AndroidFunitureShopApp.model.Cart.CartItemAdapter;
 import com.AndroidFunitureShopApp.viewmodel.EventBus.TinhTongEvent;
-import com.AndroidFunitureShopApp.viewmodel.CartsListData;
+import com.AndroidFunitureShopApp.viewmodel.Utils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -29,31 +29,25 @@ public class CartsFragment extends Fragment {
     private FragmentCartsBinding binding;
     private ArrayList<CartItem> cartItems;
     private CartItemAdapter cartItemAdapter;
+    private long totalPrice;
 
     private void tinhTongTien() {
-        long tongTien = 0;
+        totalPrice = 0;
 
-        for (CartItem item : CartsListData.cartItemList) {
-            tongTien += item.getPrice() * item.getQuantity();
+        for (CartItem item : Utils.cartItemList) {
+            totalPrice += item.getPrice() * item.getQuantity();
         }
 
-        binding.tvTotalCart.setText(String.valueOf(tongTien) + "$");
+        binding.tvTotalCart.setText(String.valueOf(totalPrice) + "$");
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = FragmentCartsBinding.inflate(getLayoutInflater());
-        if (getArguments() != null) {
-
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View viewRoot = binding.getRoot();
-        return viewRoot;
+        binding = FragmentCartsBinding.inflate(inflater, container, false);
+
+        return binding.getRoot();
     }
 
     @Override
@@ -61,22 +55,25 @@ public class CartsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         binding.rvCartitems.setHasFixedSize(true);
         binding.rvCartitems.setLayoutManager(new LinearLayoutManager(getContext()));
-        if (CartsListData.cartItemList.size() > 0) {
+        if (Utils.cartItemList.size() > 0) {
 
-            cartItemAdapter = new CartItemAdapter(CartsListData.cartItemList);
+            cartItemAdapter = new CartItemAdapter(Utils.cartItemList);
             binding.rvCartitems.setAdapter(cartItemAdapter);
 
             tinhTongTien();
         } else {
             binding.txtNote.setVisibility(View.VISIBLE);
         }
+
         binding.btnMuahang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), EnterDeliveryInforActivity.class);
+                Intent intent = new Intent(getActivity(), PaymentActivity.class);
+                intent.putExtra("totalPrice", totalPrice);
                 startActivity(intent);
             }
         });
+
     }
 
     @Override

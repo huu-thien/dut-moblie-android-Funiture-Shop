@@ -1,6 +1,8 @@
 package com.AndroidFunitureShopApp.model.Cart;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.AndroidFunitureShopApp.Interface.IImageClickListenner;
 import com.AndroidFunitureShopApp.R;
+import com.AndroidFunitureShopApp.viewmodel.Utils;
 import com.AndroidFunitureShopApp.viewmodel.EventBus.TinhTongEvent;
 import com.squareup.picasso.Picasso;
 
@@ -60,17 +63,37 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Viewho
                         int newQuantity = cartItemList.get(pos).getQuantity() + 1;
                         cartItemList.get(pos).setQuantity(newQuantity);
                     }
+                    holder.tvQuantity.setText(cartItemList.get(pos).getQuantity() + "");
+                    long totalprice = cartItemList.get(pos).getQuantity() * cartItemList.get(pos).getPrice();
+                    holder.tvTotalCartPrice.setText(totalprice + "$");
+                    EventBus.getDefault().postSticky(new TinhTongEvent());
+
                 } else if (value == 2) {
                     if (cartItemList.get(pos).getQuantity() > 1) {
                         int newQuantity = cartItemList.get(pos).getQuantity() - 1;
                         cartItemList.get(pos).setQuantity(newQuantity);
+                    } else if (cartItemList.get(pos).getQuantity() == 1) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getRootView().getContext());
+                        builder.setTitle("Inform");
+                        builder.setMessage("Do you want to remove this product out of your cart?");
+                        builder.setPositiveButton("Agree", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Utils.cartItemList.remove(pos);
+                                notifyDataSetChanged();
+                                EventBus.getDefault().postSticky(new TinhTongEvent());
+                            }
+                        });
+
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.show();
                     }
                 }
-
-                holder.tvQuantity.setText(cartItemList.get(pos).getQuantity() + "");
-                long totalprice = cartItemList.get(pos).getQuantity() * cartItemList.get(pos).getPrice();
-                holder.tvTotalCartPrice.setText(totalprice + "$");
-                EventBus.getDefault().postSticky(new TinhTongEvent());
             }
         });
     }
