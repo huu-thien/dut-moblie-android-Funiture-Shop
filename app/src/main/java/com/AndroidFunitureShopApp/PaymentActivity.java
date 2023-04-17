@@ -51,9 +51,9 @@ public class PaymentActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(strAddress)) {
                     Toast.makeText(getApplicationContext(), "You forget enter address!!!", Toast.LENGTH_SHORT).show();
                 } else {
-                    String strEmail = Utils.account.getEmail();
-                    String strPhone = Utils.account.getPhone();
-                    int idUser = Utils.account.getId();
+                    String strEmail = UserInfo.userInfo.getEmail();
+                    String strPhone = UserInfo.userInfo.getPhone();
+                    int idUser = UserInfo.userInfo.getId();
                     Log.d("test", new Gson().toJson(Utils.cartItemList));
 
                     compositeDisposable.add(orderAPIService.createOrder(strEmail, strPhone, totalPrice, idUser, strAddress, totalItem, new Gson().toJson(Utils.cartItemList))
