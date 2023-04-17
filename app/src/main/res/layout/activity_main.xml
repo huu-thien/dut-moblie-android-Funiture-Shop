@@ -15,31 +15,31 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="100dp">
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#376553"
-                android:fontFamily="cursive"
-                android:padding="20sp"
-                android:text="Furniture in your style"
-                android:textColor="#fff"
-                android:textSize="42sp"
-                android:textStyle="bold">
-            </TextView>
-            <ImageButton
-                android:id="@+id/search_but"
-                android:layout_width="50dp"
-                android:layout_height="100dp"
-                android:layout_alignParentEnd="true"
-                android:background="#376553"
+<!--        <RelativeLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="100dp">-->
+<!--            <TextView-->
+<!--                android:id="@+id/textView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="#376553"-->
+<!--                android:fontFamily="cursive"-->
+<!--                android:padding="20sp"-->
+<!--                android:text="Furniture in your style"-->
+<!--                android:textColor="#fff"-->
+<!--                android:textSize="42sp"-->
+<!--                android:textStyle="bold">-->
+<!--            </TextView>-->
+<!--            <ImageButton-->
+<!--                android:id="@+id/search_but"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:background="#376553"-->
 
-                android:src="@drawable/baseline_search_24"
-                ></ImageButton>
-        </RelativeLayout>
+<!--                android:src="@drawable/baseline_search_24"-->
+<!--                ></ImageButton>-->
+<!--        </RelativeLayout>-->
 
 
         <androidx.viewpager.widget.ViewPager

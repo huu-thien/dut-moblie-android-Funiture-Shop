@@ -14,6 +14,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <CheckBox
+            android:id="@+id/cart_checkbox"
+
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </CheckBox>
         <ImageView
             android:id="@+id/image_carturl"
             android:layout_width="100dp"
@@ -23,7 +31,7 @@
             android:src="@drawable/facebook_button"></ImageView>
 
         <LinearLayout
-            android:layout_width="170dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="vertical">
@@ -33,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="6dp"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="NAME"
                 android:textColor="#376553"
                 android:textSize="17sp"
@@ -44,6 +53,7 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="TOTAL PRICE"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="#376553"
                 android:textSize="12sp"
                 android:textStyle="bold"></TextView>
@@ -53,13 +63,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <CheckBox
-                    android:id="@+id/cart_checkbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
 
-                </CheckBox>
 
                 <TextView
                     android:id="@+id/txt_carttotalprice"
@@ -67,7 +71,8 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="8dp"
                     android:text="123$"
-                    android:textColor="#e29547"
+                    android:textColor="#376553"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textSize="17dp"
                     android:textStyle="bold"></TextView>
             </LinearLayout>
@@ -86,7 +91,7 @@
                 android:id="@+id/btn_cartremove"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:backgroundTint="#376553"
+                android:backgroundTint="#fd6b68"
                 android:text="-"
                 android:textColor="#fff"
                 android:textSize="16sp"></Button>
@@ -96,6 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
+                android:fontFamily="@font/poppins_regular"
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -108,7 +114,7 @@
                 android:id="@+id/btn_cartadd"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:backgroundTint="#376553"
+                android:backgroundTint="#fd6b68"
                 android:text="+"
                 android:textColor="#fff"
                 android:textSize="16sp"></Button>

@@ -11,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="GIỎ HÀNG TRỐNG!!"
+        android:text="Your cart is empty !!"
         android:textSize="26sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/poppins_semibold"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"></TextView>
@@ -22,7 +22,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#FFF"
+        android:background="#fd6b68"
+        app:titleTextColor="#fff"
+        android:importantForContentCapture="auto"
         app:layout_constraintTop_toTopOf="parent"
         app:title="MY SHOPPING BAG">
 
@@ -51,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/poppins_regular"
             android:text="TOTAL BILL: "
             android:textColor="#376553"
             android:textSize="20sp"></TextView>
@@ -61,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="0$"
+            android:fontFamily="@font/poppins_semibold"
             android:textColor="#376553"
             android:textSize="20sp"
             android:textStyle="bold"></TextView>
@@ -75,23 +79,35 @@
 
         <Button
             android:id="@+id/btnViewHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            style="@android:style/Widget.Button"
+            android:layout_width="160dp"
+            android:layout_height="45dp"
             android:layout_margin="10dp"
-            android:backgroundTint="#376553"
-            android:text="VIEW HISTORY"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_background"
+            android:backgroundTint="#fd6b68"
+            android:fontFamily="@font/poppins_semibold"
+            android:letterSpacing="0.1"
+            android:text="View History"
             android:textColor="#fff"
-            android:textSize="20sp"></Button>
+            android:textSize="16sp"></Button>
 
         <Button
             android:id="@+id/btn_muahang"
+            style="@android:style/Widget.Button"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="45dp"
             android:layout_margin="10dp"
-            android:backgroundTint="#376553"
-            android:text="BUY PRODUCTS"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_background"
+            android:backgroundTint="#fd6b68"
+            android:fontFamily="@font/poppins_semibold"
+            android:letterSpacing="0.1"
+            android:text="Checkout now !!"
             android:textColor="#fff"
-            android:textSize="20sp"></Button>
+            android:textSize="16sp"></Button>
     </LinearLayout>
 
 

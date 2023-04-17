@@ -36,13 +36,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         SetUserInfo();
-
-        binding.searchBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchActivityProcess();
-            }
-        });
+//        binding.searchBut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                searchActivityProcess();
+//            }
+//        });
+//
 
     }
 
