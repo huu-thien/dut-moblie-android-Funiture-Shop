@@ -36,7 +36,7 @@ public class CartsFragment extends Fragment {
     private void tinhTongTien() {
         totalPrice = 0;
 
-        for (CartItem item : Utils.cartItemList) {
+        for (CartItem item : Utils.cartItemBuyList) {
             totalPrice += item.getPrice() * item.getQuantity();
         }
 

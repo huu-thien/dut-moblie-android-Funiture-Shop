@@ -37,6 +37,18 @@ public class MainActivity extends AppCompatActivity {
 
         SetUserInfo();
 
+        binding.searchBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchActivityProcess();
+            }
+        });
+
+    }
+
+    private void searchActivityProcess() {
+        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+        startActivity(intent);
     }
 
     private void SetUserInfo() {

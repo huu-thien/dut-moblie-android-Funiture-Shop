@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,6 +57,24 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Viewho
         holder.tvTotalCartPrice.setText(totalprice + "$");
         Picasso.get().load(cartItem.getImageUrl()).into(holder.imageUrl);
 
+        holder.cartCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    Utils.addToBuyCart(cartItem);
+                    EventBus.getDefault().postSticky(new TinhTongEvent());
+                } else {
+                    for (int i = 0; i < Utils.cartItemBuyList.size(); i++) {
+                        if (Utils.cartItemBuyList.get(i).getId() == cartItem.getId()) {
+                            Utils.cartItemBuyList.remove(i);
+                            EventBus.getDefault().postSticky(new TinhTongEvent());
+                        }
+                    }
+                }
+            }
+
+        });
+
         holder.setListenner(new IImageClickListenner() {
             @Override
             public void onImageClick(View view, int pos, int value) {
@@ -62,16 +82,21 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Viewho
                     if (cartItemList.get(pos).getQuantity() < 11) {
                         int newQuantity = cartItemList.get(pos).getQuantity() + 1;
                         cartItemList.get(pos).setQuantity(newQuantity);
+                        Utils.cartItemBuyList.get(pos).setQuantity(newQuantity);
+                        EventBus.getDefault().postSticky(new TinhTongEvent());
                     }
-                    holder.tvQuantity.setText(cartItemList.get(pos).getQuantity() + "");
-                    long totalprice = cartItemList.get(pos).getQuantity() * cartItemList.get(pos).getPrice();
-                    holder.tvTotalCartPrice.setText(totalprice + "$");
-                    EventBus.getDefault().postSticky(new TinhTongEvent());
+
+//                    holder.tvQuantity.setText(cartItemList.get(pos).getQuantity() + "");
+//                    long totalprice = cartItemList.get(pos).getQuantity() * cartItemList.get(pos).getPrice();
+//                    holder.tvTotalCartPrice.setText(totalprice + "$");
+//                    EventBus.getDefault().postSticky(new TinhTongEvent());
 
                 } else if (value == 2) {
                     if (cartItemList.get(pos).getQuantity() > 1) {
                         int newQuantity = cartItemList.get(pos).getQuantity() - 1;
                         cartItemList.get(pos).setQuantity(newQuantity);
+                        Utils.cartItemBuyList.get(pos).setQuantity(newQuantity);
+                        EventBus.getDefault().postSticky(new TinhTongEvent());
                     } else if (cartItemList.get(pos).getQuantity() == 1) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(view.getRootView().getContext());
                         builder.setTitle("Inform");
@@ -94,6 +119,11 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Viewho
                         builder.show();
                     }
                 }
+
+                holder.tvQuantity.setText(cartItemList.get(pos).getQuantity() + "");
+                long totalprice = cartItemList.get(pos).getQuantity() * cartItemList.get(pos).getPrice();
+                holder.tvTotalCartPrice.setText(totalprice + "$");
+                EventBus.getDefault().postSticky(new TinhTongEvent());
             }
         });
     }
@@ -115,6 +145,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Viewho
         public Button btnSub;
         public ImageView btnAddDrag;
         public IImageClickListenner listenner;
+        public CheckBox cartCheckbox;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
@@ -125,6 +156,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.Viewho
             btnAdd = (Button) itemView.findViewById(R.id.btn_cartadd);
             btnSub = (Button) itemView.findViewById(R.id.btn_cartremove);
             //btnAddDrag = (ImageView) itemView.findViewById(R.id.btn_cartdrag);
+            cartCheckbox = itemView.findViewById(R.id.cart_checkbox);
+
             tvTotalCartPrice = itemView.findViewById(R.id.txt_carttotalprice);
 
             btnAdd.setOnClickListener(this);

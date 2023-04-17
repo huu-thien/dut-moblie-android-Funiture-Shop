@@ -33,4 +33,8 @@ public class productsAPIService {
         return api.getProductsByCategories(categoryId);
     }
 
+    public Single<List<Product>> searchProduct(String search) {
+        return api.searchProduct(search);
+    }
+
 }
