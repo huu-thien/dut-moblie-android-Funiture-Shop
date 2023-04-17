@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.AndroidFunitureShopApp.databinding.ActivityPaymentBinding;
+import com.AndroidFunitureShopApp.model.Account.UserInfo;
 import com.AndroidFunitureShopApp.viewmodel.OrderAPIService;
 import com.AndroidFunitureShopApp.viewmodel.Utils;
 import com.google.gson.Gson;
@@ -38,9 +39,11 @@ public class PaymentActivity extends AppCompatActivity {
         totalPrice = getIntent().getLongExtra("totalPrice", 0);
         countItem();
 
+        binding.editAddress.setText(UserInfo.userInfo.getDefaultAdress());
+        binding.txtName.setText(UserInfo.userInfo.getFullName());
         binding.txtTotalPrice.setText(totalPrice + "$");
-        binding.txtEmail.setText(Utils.account.getEmail());
-        binding.txtPhone.setText(Utils.account.getPhone());
+        binding.txtEmail.setText(UserInfo.userInfo.getEmail());
+        binding.txtPhone.setText(UserInfo.userInfo.getPhone());
         binding.btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
