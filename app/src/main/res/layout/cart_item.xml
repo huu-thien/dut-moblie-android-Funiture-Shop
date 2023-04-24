@@ -107,7 +107,8 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="1"
-                android:textSize="15sp">
+                android:textColor="#000000"
+                android:textSize="20sp">
 
             </TextView>
 
