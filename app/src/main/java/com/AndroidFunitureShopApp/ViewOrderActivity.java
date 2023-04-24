@@ -1,10 +1,16 @@
 package com.AndroidFunitureShopApp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
+import com.AndroidFunitureShopApp.databinding.ActivityPaymentBinding;
+import com.AndroidFunitureShopApp.databinding.ActivityViewOrderBinding;
+import com.AndroidFunitureShopApp.model.Order.OrderAdapter;
 import com.AndroidFunitureShopApp.viewmodel.OrderAPIService;
 import com.AndroidFunitureShopApp.viewmodel.Utils;
 
@@ -13,13 +19,19 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ViewOrderActivity extends AppCompatActivity {
-    CompositeDisposable compositeDisposable = new CompositeDisposable();
     OrderAPIService orderAPIService;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private ActivityViewOrderBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_order);
+        binding = ActivityViewOrderBinding.inflate(getLayoutInflater());
+        View viewRoot = binding.getRoot();
+        setContentView(viewRoot);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        binding.rvViewOrder.setLayoutManager(layoutManager);
 
         orderAPIService = new OrderAPIService();
 
@@ -28,14 +40,13 @@ public class ViewOrderActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         orderModel -> {
-                            Toast.makeText(getApplicationContext(), orderModel.getResult().get(0).getItem().get(0).getNameProduct(), Toast.LENGTH_SHORT).show();
+                            OrderAdapter adapter = new OrderAdapter(getApplicationContext(), orderModel.getResult());
+                            binding.rvViewOrder.setAdapter(adapter);
                         },
                         throwable -> {
                             Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
-
                         }
-                )
-        );
+                ));
     }
 
     @Override

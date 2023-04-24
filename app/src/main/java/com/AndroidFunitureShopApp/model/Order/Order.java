@@ -9,10 +9,10 @@ import java.util.List;
 public class Order implements Serializable {
     int id;
     int idUser;
-    String address;
     String phone;
+    String address;
     long totalPrice;
-    ArrayList<Item> item;
+    List<Item> item;
 
     public int getId() {
         return id;
@@ -30,20 +30,20 @@ public class Order implements Serializable {
         this.idUser = idUser;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getPhone() {
         return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public long getTotalPrice() {
@@ -54,11 +54,11 @@ public class Order implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public ArrayList<Item> getItem() {
+    public List<Item> getItem() {
         return item;
     }
 
-    public void setItem(ArrayList<Item> item) {
+    public void setItem(List<Item> item) {
         this.item = item;
     }
 }

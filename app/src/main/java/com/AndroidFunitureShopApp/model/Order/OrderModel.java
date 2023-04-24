@@ -7,7 +7,7 @@ import java.util.List;
 public class OrderModel {
     boolean success;
     String message;
-    ArrayList<Order> result;
+    List<Order> result;
 
     public boolean isSuccess() {
         return success;
@@ -25,11 +25,11 @@ public class OrderModel {
         this.message = message;
     }
 
-    public ArrayList<Order> getResult() {
+    public List<Order> getResult() {
         return result;
     }
 
-    public void setResult(ArrayList<Order> result) {
+    public void setResult(List<Order> result) {
         this.result = result;
     }
 }
