@@ -8,9 +8,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.AndroidFunitureShopApp.databinding.ActivityProductByCategoryBinding;
-import com.AndroidFunitureShopApp.databinding.ActivityProductDetailBinding;
-import com.AndroidFunitureShopApp.model.Product.Product;
-import com.AndroidFunitureShopApp.model.Product.productsAdapter;
+import com.AndroidFunitureShopApp.Server.Product.Product;
+import com.AndroidFunitureShopApp.Server.Product.productsAdapter;
 import com.AndroidFunitureShopApp.viewmodel.productsAPIService;
 
 import java.util.ArrayList;

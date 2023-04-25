@@ -231,7 +231,7 @@ public class AccountFragment extends Fragment {
             Toast.makeText(context, "Please, enter your phone!", Toast.LENGTH_SHORT).show();
         }   else {
             if(!password.isEmpty() && newpass.isEmpty() && password.equals(UserInfo.userInfo.getPassword())){
-                compositeDisposable.add(accountAPIService.UpdateUser(id, password, fullname, imageAva, defaultAdress, "email@gamil.com", phone)
+                compositeDisposable.add(accountAPIService.UpdateUser(id, password, fullname, imageAva, defaultAdress, "email@gmail.com", phone)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -251,7 +251,7 @@ public class AccountFragment extends Fragment {
                         ));
             }
             else if(!password.isEmpty() && !newpass.isEmpty() && password.equals(UserInfo.userInfo.getPassword())){
-                compositeDisposable.add(accountAPIService.UpdateUser(id, newpass, fullname, imageAva, defaultAdress, "email@gamil.com", phone)
+                compositeDisposable.add(accountAPIService.UpdateUser(id, newpass, fullname, imageAva, defaultAdress, "email@gmail.com", phone)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(

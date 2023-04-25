@@ -2,7 +2,7 @@ package com.AndroidFunitureShopApp.viewmodel;
 
 import com.AndroidFunitureShopApp.model.Account.Account;
 import com.AndroidFunitureShopApp.model.Cart.CartItem;
-import com.AndroidFunitureShopApp.model.Product.Product;
+import com.AndroidFunitureShopApp.Server.Product.Product;
 
 import java.util.ArrayList;
 import java.util.List;
