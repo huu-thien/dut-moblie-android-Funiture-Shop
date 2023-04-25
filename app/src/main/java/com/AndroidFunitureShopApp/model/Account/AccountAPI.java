@@ -38,4 +38,18 @@ public interface AccountAPI {
             @Field("email") String email,
             @Field("phone") String phone
     );
+
+    @POST("checkpass2.php")
+    @FormUrlEncoded
+    Observable<AccountModel> checkpass2(
+            @Field("username") String username,
+            @Field("pass2") String pass2
+    );
+
+    @POST("updatePassword.php")
+    @FormUrlEncoded
+    Observable<AccountModel> updatePassword(
+            @Field("id") int id,
+            @Field("password") String password
+    );
 }

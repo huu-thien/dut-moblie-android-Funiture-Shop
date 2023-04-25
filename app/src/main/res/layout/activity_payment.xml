@@ -8,14 +8,11 @@
     android:background="#f3eef3">
 
     <ImageView
-
+        android:layout_width="390dp"
+        android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
+        android:src="@drawable/bank4"></ImageView>
 
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:src="@drawable/bank2">
-
-    </ImageView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -133,42 +130,42 @@
             android:background="@drawable/rounded_border"
             android:textSize="14sp"/>
     </LinearLayout>
-    <TextView
-        android:fontFamily="@font/poppins_semibold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingBottom="8dp"
-        android:text="Recipient's name: "
-        android:textSize="16sp"
-        android:textColor="#233266"
-        android:textStyle="bold"></TextView>
-    <LinearLayout
-        android:paddingLeft="20dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <TextView-->
+<!--        android:fontFamily="@font/poppins_semibold"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingLeft="20dp"-->
+<!--        android:paddingBottom="8dp"-->
+<!--        android:text="Recipient's name: "-->
+<!--        android:textSize="16sp"-->
+<!--        android:textColor="#233266"-->
+<!--        android:textStyle="bold"></TextView>-->
+<!--    <LinearLayout-->
+<!--        android:paddingLeft="20dp"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-        <ImageView
+<!--        <ImageView-->
 
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/user">
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/user">-->
 
-        </ImageView>
-        <EditText
-            android:id="@+id/editAdress"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="20dp"
-            android:layout_height="40dp"
-            android:textColorHint="#cbcad1"
-            android:backgroundTint="#fff"
-            android:background="@drawable/rounded_border"
-            android:textSize="14sp"/>
-    </LinearLayout>
+<!--        </ImageView>-->
+<!--        <EditText-->
+<!--            android:id="@+id/editAdress"-->
+<!--            android:fontFamily="@font/poppins_regular"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginLeft="12dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:textColorHint="#cbcad1"-->
+<!--            android:backgroundTint="#fff"-->
+<!--            android:background="@drawable/rounded_border"-->
+<!--            android:textSize="14sp"/>-->
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"

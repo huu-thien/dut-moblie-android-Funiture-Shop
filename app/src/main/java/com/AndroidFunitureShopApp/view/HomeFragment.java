@@ -9,7 +9,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,12 +21,11 @@ import android.view.ViewOutlineProvider;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.ViewFlipper;
 
 import com.AndroidFunitureShopApp.R;
 import com.AndroidFunitureShopApp.databinding.FragmentHomeBinding;
-import com.AndroidFunitureShopApp.model.Product.Product;
-import com.AndroidFunitureShopApp.model.Product.productsAdapter;
+import com.AndroidFunitureShopApp.Server.Product.Product;
+import com.AndroidFunitureShopApp.Server.Product.productsAdapter;
 import com.AndroidFunitureShopApp.viewmodel.productsAPIService;
 import com.squareup.picasso.Picasso;
 

@@ -105,7 +105,7 @@
             android:backgroundTint="#fd6b68"
             android:fontFamily="@font/poppins_semibold"
             android:letterSpacing="0.1"
-            android:text="Checkout now !!"
+            android:text="CHECKOUT NOW "
             android:textColor="#fff"
             android:textSize="16sp"></Button>
     </LinearLayout>

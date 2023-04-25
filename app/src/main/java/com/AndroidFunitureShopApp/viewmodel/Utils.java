@@ -2,7 +2,7 @@ package com.AndroidFunitureShopApp.viewmodel;
 
 import com.AndroidFunitureShopApp.model.Account.Account;
 import com.AndroidFunitureShopApp.model.Cart.CartItem;
-import com.AndroidFunitureShopApp.model.Product.Product;
+import com.AndroidFunitureShopApp.Server.Product.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class Utils {
         String name = product.getName();
         String img = product.getImageUrl();
         int price = product.getPrice();
-        int quantity = 1;
+        int quantity = product.getQuantity();
 
         if (Utils.cartItemBuyList.size() > 0) {
             boolean check = true;

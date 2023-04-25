@@ -1,7 +1,7 @@
 package com.AndroidFunitureShopApp.viewmodel;//package com.AndroidFunitureShopApp.viewmodel;
 
-import com.AndroidFunitureShopApp.model.Product.Product;
-import com.AndroidFunitureShopApp.model.Product.productsAPI;
+import com.AndroidFunitureShopApp.Server.Product.Product;
+import com.AndroidFunitureShopApp.Server.Product.productsAPI;
 
 import java.util.List;
 

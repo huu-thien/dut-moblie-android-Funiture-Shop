@@ -105,7 +105,6 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 UpdateInfo(id);
-                ShowInfo();
             }
         });
         return view;
@@ -160,6 +159,7 @@ public class AccountFragment extends Fragment {
         if(UserInfo.userInfo.getPhone() != null) binding.etPhone.setText(UserInfo.userInfo.getPhone());
 //        if(UserInfo.userInfo.getEmail() != null) binding.etEmail.setText(UserInfo.userInfo.getEmail());
         if(UserInfo.userInfo.getDefaultAdress() != null) binding.etAddress.setText(UserInfo.userInfo.getDefaultAdress());
+        binding.etPassword.setText("");
     }
 
     // Phương thức chụp ảnh
@@ -231,7 +231,7 @@ public class AccountFragment extends Fragment {
             Toast.makeText(context, "Please, enter your phone!", Toast.LENGTH_SHORT).show();
         }   else {
             if(!password.isEmpty() && newpass.isEmpty() && password.equals(UserInfo.userInfo.getPassword())){
-                compositeDisposable.add(accountAPIService.UpdateUser(id, password, fullname, imageAva, defaultAdress, "email", phone)
+                compositeDisposable.add(accountAPIService.UpdateUser(id, password, fullname, imageAva, defaultAdress, "email@gmail.com", phone)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -239,6 +239,7 @@ public class AccountFragment extends Fragment {
                                     if (accountModel.isSuccess()){
                                         Account account = accountModel.getResult().get(0);
                                         UserInfo.userInfo = account;
+                                        ShowInfo();
                                         Toast.makeText(context, "Update user information Success!", Toast.LENGTH_SHORT).show();
                                     }else {
                                         Toast.makeText(context, accountModel.getMessage(), Toast.LENGTH_SHORT).show();
@@ -250,7 +251,7 @@ public class AccountFragment extends Fragment {
                         ));
             }
             else if(!password.isEmpty() && !newpass.isEmpty() && password.equals(UserInfo.userInfo.getPassword())){
-                compositeDisposable.add(accountAPIService.UpdateUser(id, newpass, fullname, imageAva, defaultAdress, "email", phone)
+                compositeDisposable.add(accountAPIService.UpdateUser(id, newpass, fullname, imageAva, defaultAdress, "email@gmail.com", phone)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -258,6 +259,7 @@ public class AccountFragment extends Fragment {
                                     if (accountModel.isSuccess()){
                                         Account account = accountModel.getResult().get(0);
                                         UserInfo.userInfo = account;
+                                        ShowInfo();
                                         Toast.makeText(context, "Update user information Success!", Toast.LENGTH_SHORT).show();
                                     }else {
                                         Toast.makeText(context, accountModel.getMessage(), Toast.LENGTH_SHORT).show();
