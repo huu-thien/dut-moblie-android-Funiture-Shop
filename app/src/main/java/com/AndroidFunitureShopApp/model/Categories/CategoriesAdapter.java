@@ -9,6 +9,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,13 +20,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class CategoriesAdapter extends RecyclerView.Adapter<com.AndroidFunitureShopApp.model.Categories.CategoriesAdapter.Viewholder> implements Filterable {
-    private static List<Categories> categories;
-    private static List<Categories> categoriesCopy;
+public class CategoriesAdapter extends RecyclerView.Adapter<com.AndroidFunitureShopApp.model.Categories.CategoriesAdapter.Viewholder> {
+    private Context context;
+    private List<Categories> categories;
 
-    public CategoriesAdapter(List<Categories> categoriesList) {
+    public CategoriesAdapter(Context context, List<Categories> categoriesList) {
+        this.context = context;
         this.categories = categoriesList;
-        this.categoriesCopy = categoriesList;
         notifyDataSetChanged();
     }
 
@@ -49,10 +50,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<com.AndroidFunitureS
         return categories.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        return null;
-    }
 
     public class Viewholder extends RecyclerView.ViewHolder {
         public ImageView imageUrl;
@@ -66,12 +63,14 @@ public class CategoriesAdapter extends RecyclerView.Adapter<com.AndroidFunitureS
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), ProductByCategory.class);
+                    Intent intent = new Intent(v.getContext(), ProductByCategory.class);
                     Categories category = categories.get(getAdapterPosition());
                     intent.putExtra("category_id", category.getId());
                     itemView.getContext().startActivity(intent);
+                    v.getContext().startActivity(intent);
                 }
             });
+
         }
     }
 }

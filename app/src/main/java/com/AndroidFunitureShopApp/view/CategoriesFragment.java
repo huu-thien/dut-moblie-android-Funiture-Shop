@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.AndroidFunitureShopApp.MainActivity;
 import com.AndroidFunitureShopApp.R;
 import com.AndroidFunitureShopApp.databinding.FragmentCategoriesBinding;
 import com.AndroidFunitureShopApp.databinding.FragmentHomeBinding;
@@ -61,7 +62,7 @@ public class CategoriesFragment extends Fragment {
 
         categories = new ArrayList<Categories>();
         newCategories = new ArrayList<Categories>();
-        categoriesAdapter = new CategoriesAdapter(newCategories);
+        categoriesAdapter = new CategoriesAdapter((MainActivity) getContext(), newCategories);
         binding.rvCategories.setAdapter(categoriesAdapter);
         binding.rvCategories.setLayoutManager(new LinearLayoutManager(getContext()));
 

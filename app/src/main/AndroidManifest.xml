@@ -53,13 +53,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".EnterDeliveryInforActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".ProductDetail"
             android:exported="false">
             <meta-data
@@ -67,14 +60,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ShipmentDetails"
-            android:exported="false">
+            android:name=".MainActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ProductByCategory"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
