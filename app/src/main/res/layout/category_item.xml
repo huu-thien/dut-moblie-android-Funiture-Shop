@@ -6,7 +6,7 @@
     android:layout_height="145dp"
     android:orientation="vertical"
     app:cardCornerRadius="10dp"
-    app:cardBackgroundColor="#f6f6f6"
+    app:cardBackgroundColor="#fff"
     app:cardElevation="3dp"
     android:layout_marginLeft="18dp"
     android:layout_marginRight="18dp"
@@ -44,6 +44,14 @@
                 android:textColor="#376553"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+            <TextView
+                android:padding="10dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TextView>
         </LinearLayout>
 
     </LinearLayout>
