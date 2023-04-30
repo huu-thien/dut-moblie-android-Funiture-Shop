@@ -7,7 +7,7 @@ $data = mysqli_query($conn, $query);
 $result = array();
 
 while ($row = mysqli_fetch_assoc($data)) {
-    $truyVan = 'SELECT * FROM `orderdetail` INNER JOIN `product` ON orderdetail.idProduct = product.id WHERE orderdetail.idOrder = ' . $row['id'] . '';
+    $truyVan = 'SELECT orderdetail.*, product.name, product.imageUrl, product.originalPrice, product.discount, product.detail, product.type, product.categoryId FROM `orderdetail` INNER JOIN `product` ON orderdetail.idProduct = product.id WHERE orderdetail.idOrder = ' . $row['id'] . '';
     $data1 = mysqli_query($conn, $truyVan);
     $item = array();
     while ($row1 = mysqli_fetch_assoc($data1)) {
@@ -19,7 +19,11 @@ while ($row = mysqli_fetch_assoc($data)) {
 }
 
 if (!empty($result)) {
-    $arr = $result;
+    $arr = [
+        'success' => true,
+        'message' => 'Success',
+        'result' => $result
+    ];
 } else {
     $arr = [
         'success' => false,
