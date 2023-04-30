@@ -6,10 +6,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.AndroidFunitureShopApp.databinding.ActivityProductByCategoryBinding;
-import com.AndroidFunitureShopApp.databinding.ActivityProductDetailBinding;
 import com.AndroidFunitureShopApp.model.Product.Product;
 import com.AndroidFunitureShopApp.model.Product.productsAdapter;
 import com.AndroidFunitureShopApp.viewmodel.productsAPIService;
@@ -30,6 +28,7 @@ public class ProductByCategory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_product_by_category);
 
         binding = ActivityProductByCategoryBinding.inflate(getLayoutInflater());
         View viewRoot = binding.getRoot();
@@ -38,7 +37,6 @@ public class ProductByCategory extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         int category_id = -1;
-
         if (bundle != null) {
             category_id = bundle.getInt("category_id");
         }
@@ -48,7 +46,6 @@ public class ProductByCategory extends AppCompatActivity {
         binding.rvProductByCategory.setAdapter(productsAdapter);
         binding.rvProductByCategory.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         apiServices = new productsAPIService();
-        Toast.makeText(this, "" + category_id, Toast.LENGTH_SHORT).show();
         apiServices.getProductsByCategories(category_id)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

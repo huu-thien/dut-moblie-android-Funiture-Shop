@@ -1,7 +1,5 @@
 package com.AndroidFunitureShopApp.model.Product;
 
-import com.AndroidFunitureShopApp.model.Product.Product;
-
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;

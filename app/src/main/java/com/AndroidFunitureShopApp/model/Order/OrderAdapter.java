@@ -1,6 +1,7 @@
 package com.AndroidFunitureShopApp.model.Order;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.Viewholder> 
                 LinearLayoutManager.VERTICAL,
                 false
         );
+
         layoutManager.setInitialPrefetchItemCount(order.getItem().size());
 
         // Adapter detail

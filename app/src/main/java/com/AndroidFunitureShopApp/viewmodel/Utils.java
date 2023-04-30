@@ -44,7 +44,7 @@ public class Utils {
         String name = product.getName();
         String img = product.getImageUrl();
         int price = product.getPrice();
-        int quantity = 1;
+        int quantity = product.getQuantity();
 
         if (Utils.cartItemBuyList.size() > 0) {
             boolean check = true;
@@ -65,11 +65,4 @@ public class Utils {
         }
     }
 
-    public static long calTotalPrice() {
-        long totalPrice = 0;
-        for (CartItem item : Utils.cartItemList) {
-            totalPrice += item.getQuantity() * item.getPrice();
-        }
-        return totalPrice;
-    }
 }

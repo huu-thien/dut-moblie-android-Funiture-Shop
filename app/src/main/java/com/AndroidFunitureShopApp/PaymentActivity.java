@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.AndroidFunitureShopApp.databinding.ActivityPaymentBinding;
+import com.AndroidFunitureShopApp.model.Account.UserInfo;
 import com.AndroidFunitureShopApp.viewmodel.OrderAPIService;
 import com.AndroidFunitureShopApp.viewmodel.Utils;
 import com.google.gson.Gson;
@@ -38,9 +39,11 @@ public class PaymentActivity extends AppCompatActivity {
         totalPrice = getIntent().getLongExtra("totalPrice", 0);
         countItem();
 
+        binding.editAddress.setText(UserInfo.userInfo.getDefaultAdress());
+        binding.txtName.setText(UserInfo.userInfo.getFullName());
         binding.txtTotalPrice.setText(totalPrice + "$");
-        binding.txtEmail.setText(Utils.account.getEmail());
-        binding.txtPhone.setText(Utils.account.getPhone());
+        binding.txtEmail.setText(UserInfo.userInfo.getEmail());
+        binding.txtPhone.setText(UserInfo.userInfo.getPhone());
         binding.btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,12 +51,12 @@ public class PaymentActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(strAddress)) {
                     Toast.makeText(getApplicationContext(), "You forget enter address!!!", Toast.LENGTH_SHORT).show();
                 } else {
-                    String strEmail = Utils.account.getEmail();
-                    String strPhone = Utils.account.getPhone();
-                    int idUser = Utils.account.getId();
+                    String strEmail = UserInfo.userInfo.getEmail();
+                    String strPhone = UserInfo.userInfo.getPhone();
+                    int idUser = UserInfo.userInfo.getId();
                     Log.d("test", new Gson().toJson(Utils.cartItemList));
 
-                    compositeDisposable.add(orderAPIService.createOrder(strEmail, strPhone, totalPrice, idUser, strAddress, totalItem, new Gson().toJson(Utils.cartItemList))
+                    compositeDisposable.add(orderAPIService.createOrder(strEmail, strPhone, totalPrice, idUser, strAddress, totalItem, new Gson().toJson(Utils.cartItemBuyList))
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(accountModel -> {
@@ -73,8 +76,8 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void countItem() {
         totalItem = 0;
-        for (int i = 0; i < Utils.cartItemList.size(); i++) {
-            totalItem += Utils.cartItemList.get(i).getQuantity();
+        for (int i = 0; i < Utils.cartItemBuyList.size(); i++) {
+            totalItem += Utils.cartItemBuyList.get(i).getQuantity();
         }
     }
 

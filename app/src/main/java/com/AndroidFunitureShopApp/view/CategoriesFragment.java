@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,16 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.AndroidFunitureShopApp.MainActivity;
-import com.AndroidFunitureShopApp.R;
 import com.AndroidFunitureShopApp.databinding.FragmentCategoriesBinding;
-import com.AndroidFunitureShopApp.databinding.FragmentHomeBinding;
 import com.AndroidFunitureShopApp.model.Categories.Categories;
 import com.AndroidFunitureShopApp.model.Categories.CategoriesAdapter;
-import com.AndroidFunitureShopApp.model.Product.Product;
-import com.AndroidFunitureShopApp.model.Product.productsAdapter;
 import com.AndroidFunitureShopApp.viewmodel.CategoriesAPIService;
-import com.AndroidFunitureShopApp.viewmodel.productsAPIService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +55,7 @@ public class CategoriesFragment extends Fragment {
 
         categories = new ArrayList<Categories>();
         newCategories = new ArrayList<Categories>();
-        categoriesAdapter = new CategoriesAdapter((MainActivity) getContext(), newCategories);
+        categoriesAdapter = new CategoriesAdapter(newCategories);
         binding.rvCategories.setAdapter(categoriesAdapter);
         binding.rvCategories.setLayoutManager(new LinearLayoutManager(getContext()));
 

@@ -2,14 +2,9 @@ package com.AndroidFunitureShopApp.viewmodel;
 
 import com.AndroidFunitureShopApp.model.Account.AccountAPI;
 import com.AndroidFunitureShopApp.model.Account.AccountModel;
-import com.AndroidFunitureShopApp.model.Categories.Categories;
-import com.AndroidFunitureShopApp.model.Product.productsAPI;
-
-import java.util.List;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Single;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -36,5 +31,13 @@ public class AccountAPIService {
 
     public Observable<AccountModel> UpdateUser(int id, String password, String fullname, String imageAva, String defaultAdress, String email, String phone) {
         return api.updateUser(id, password, fullname, imageAva, defaultAdress, email, phone);
+    }
+
+    public Observable<AccountModel> checkPass2(String username, String pass2) {
+        return api.checkpass2(username, pass2);
+    }
+
+    public Observable<AccountModel> UpdatePassword(int id, String password) {
+        return api.updatePassword(id, password);
     }
 }
