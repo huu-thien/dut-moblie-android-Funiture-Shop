@@ -1,4 +1,6 @@
-package com.AndroidFunitureShopApp.Server.Product;
+package com.AndroidFunitureShopApp.model.Product;
+
+import com.AndroidFunitureShopApp.model.Product.Product;
 
 import java.util.List;
 

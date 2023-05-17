@@ -33,7 +33,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OrderDetailAdapter.Viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         Item item = itemList.get(position);
         holder.txtNameProduct.setText(item.getName() + "");
         holder.txtQuantity.setText("Quantity: " + item.getQuantity());

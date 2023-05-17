@@ -73,11 +73,4 @@ public class Utils {
         }
     }
 
-    public static long calTotalPrice() {
-        long totalPrice = 0;
-        for (CartItem item : Utils.cartItemList) {
-            totalPrice += item.getQuantity() * item.getPrice();
-        }
-        return totalPrice;
-    }
 }

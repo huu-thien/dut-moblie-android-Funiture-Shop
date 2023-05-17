@@ -56,7 +56,7 @@ public class PaymentActivity extends AppCompatActivity {
                     int idUser = UserInfo.userInfo.getId();
                     Log.d("test", new Gson().toJson(Utils.cartItemList));
 
-                    compositeDisposable.add(orderAPIService.createOrder(strEmail, strPhone, totalPrice, idUser, strAddress, totalItem, new Gson().toJson(Utils.cartItemList))
+                    compositeDisposable.add(orderAPIService.createOrder(strEmail, strPhone, totalPrice, idUser, strAddress, totalItem, new Gson().toJson(Utils.cartItemBuyList))
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(accountModel -> {
@@ -76,8 +76,8 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void countItem() {
         totalItem = 0;
-        for (int i = 0; i < Utils.cartItemList.size(); i++) {
-            totalItem += Utils.cartItemList.get(i).getQuantity();
+        for (int i = 0; i < Utils.cartItemBuyList.size(); i++) {
+            totalItem += Utils.cartItemBuyList.get(i).getQuantity();
         }
     }
 

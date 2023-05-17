@@ -10,6 +10,8 @@ import android.view.View;
 import com.AndroidFunitureShopApp.databinding.ActivityProductByCategoryBinding;
 import com.AndroidFunitureShopApp.Server.Product.Product;
 import com.AndroidFunitureShopApp.Server.Product.productsAdapter;
+import com.AndroidFunitureShopApp.model.Product.Product;
+import com.AndroidFunitureShopApp.model.Product.productsAdapter;
 import com.AndroidFunitureShopApp.viewmodel.productsAPIService;
 
 import java.util.ArrayList;

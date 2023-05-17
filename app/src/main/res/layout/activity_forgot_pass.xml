@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f3eef3"
     tools:context=".ForgotPassActivity">
 
     <LinearLayout
@@ -29,6 +30,11 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:src="@drawable/forget_password_icon" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/forgeot_pass" />
 
 
         <TextView
@@ -38,12 +44,14 @@
             android:layout_gravity="center"
             android:layout_marginTop="36dp"
             android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="Forget\nPassword"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/black"
+            android:textColor="#029394"
             android:textSize="30sp" />
 
 
@@ -92,10 +100,44 @@
             android:id="@+id/btn_forgot_next"
             android:fontFamily="@font/poppins_semibold"
             android:backgroundTint="#029394"
+=======
+        <EditText
+            android:id="@+id/et_forgot_username"
+            android:layout_width="340dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+
+            android:background="@drawable/rounded_border"
+            android:backgroundTint="#fff"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Enter Username"
+            android:textColorHint="#cbcad1"
+            android:textSize="16sp"></EditText>
+        <EditText
+            android:id="@+id/et_forgot_pass2"
+            android:layout_width="340dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/rounded_border"
+            android:backgroundTint="#fff"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Enter password level 2"
+            android:textColorHint="#cbcad1"
+            android:textSize="16sp"></EditText>
+
+        <Button
+            android:id="@+id/btn_forgot_next"
+>>>>>>> origin/branch_huy
             style="@android:style/Widget.Button"
             android:layout_width="340dp"
             android:layout_height="55dp"
             android:layout_gravity="center"
+<<<<<<< HEAD
             android:textSize="20sp"
             android:letterSpacing="0.1"
             android:textColor="#fff"
@@ -104,6 +146,16 @@
             android:text="NEXT">
         </Button>
 
+=======
+            android:background="@drawable/btn_background"
+            android:backgroundTint="#fd6b68"
+            android:fontFamily="@font/poppins_semibold"
+            android:letterSpacing="0.1"
+            android:pointerIcon="hand"
+            android:text="NEXT"
+            android:textColor="#fff"
+            android:textSize="20sp"></Button>
+>>>>>>> origin/branch_huy
 
 
     </LinearLayout>
