@@ -40,7 +40,7 @@
         android:drawablePadding="16dp"
         android:fontFamily="@font/poppins_regular"
         android:hint="Username"
-        android:text="user"
+        android:text="vanh123@gmail.com"
         android:textColorHint="#cbcad1"
         android:textSize="16sp"></EditText>
 
@@ -57,7 +57,7 @@
         android:fontFamily="@font/poppins_regular"
         android:hint="Password"
         android:inputType="textPassword"
-        android:text="123456"
+        android:text="123123"
         android:textColorHint="#cbcad1"
         android:textSize="16sp"></EditText>
     <TextView
