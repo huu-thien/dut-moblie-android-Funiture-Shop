@@ -10,6 +10,7 @@ import com.AndroidFunitureShopApp.MainActivity;
 import com.AndroidFunitureShopApp.view.AccountFragment;
 import com.AndroidFunitureShopApp.view.CartsFragment;
 import com.AndroidFunitureShopApp.view.CategoriesFragment;
+import com.AndroidFunitureShopApp.view.ChatsFragment;
 import com.AndroidFunitureShopApp.view.HomeFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -28,6 +29,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 return new AccountFragment();
             case 3:
                 return new CartsFragment();
+            case 4:
+                return new ChatsFragment();
             default:
                 return new HomeFragment();
         }
@@ -35,6 +38,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 }

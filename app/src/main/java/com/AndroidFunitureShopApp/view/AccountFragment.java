@@ -32,6 +32,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
 import com.AndroidFunitureShopApp.LoginActivity;
 import com.AndroidFunitureShopApp.MainActivity;
 import com.AndroidFunitureShopApp.R;
@@ -40,8 +41,11 @@ import com.AndroidFunitureShopApp.model.Account.Account;
 import com.AndroidFunitureShopApp.model.Account.AccountModel;
 import com.AndroidFunitureShopApp.model.Account.UserInfo;
 import com.AndroidFunitureShopApp.viewmodel.AccountAPIService;
+import com.AndroidFunitureShopApp.viewmodel.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -61,10 +65,12 @@ public class AccountFragment extends Fragment {
 
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-    AccountAPIService accountAPIService;
+    AccountAPIService accountAPIService = new AccountAPIService();
     int id = UserInfo.userInfo.getId();
-    public AccountFragment(){
+
+    public AccountFragment() {
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +78,7 @@ public class AccountFragment extends Fragment {
         if (getArguments() != null) {
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -107,8 +114,19 @@ public class AccountFragment extends Fragment {
                 UpdateInfo(id);
             }
         });
+        binding.layoutLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                accountAPIService.UpdateStatus(id,0);
+                FirebaseAuth.getInstance().signOut();
+                Intent dangnhap = new Intent(getActivity(), LoginActivity.class);
+                startActivity(dangnhap);
+
+            }
+        });
         return view;
     }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -148,17 +166,21 @@ public class AccountFragment extends Fragment {
         }
     }
 
-    public void ShowInfo(){
-        if(UserInfo.userInfo.getImageAva().length() >= 10) {
+    public void ShowInfo() {
+        if (UserInfo.userInfo.getImageAva().length() >= 10) {
             byte[] decodedString = Base64.decode(UserInfo.userInfo.getImageAva(), Base64.DEFAULT);
             Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             binding.ciAvatar.setImageBitmap(decodedBitmap);
         }
-        if(UserInfo.userInfo.getUsername() != null) binding.etUsername.setText(UserInfo.userInfo.getUsername());
-        if(UserInfo.userInfo.getFullName() != null) binding.etFullName.setText(UserInfo.userInfo.getFullName());
-        if(UserInfo.userInfo.getPhone() != null) binding.etPhone.setText(UserInfo.userInfo.getPhone());
+        if (UserInfo.userInfo.getUsername() != null)
+            binding.etUsername.setText(UserInfo.userInfo.getUsername());
+        if (UserInfo.userInfo.getFullName() != null)
+            binding.etFullName.setText(UserInfo.userInfo.getFullName());
+        if (UserInfo.userInfo.getPhone() != null)
+            binding.etPhone.setText(UserInfo.userInfo.getPhone());
 //        if(UserInfo.userInfo.getEmail() != null) binding.etEmail.setText(UserInfo.userInfo.getEmail());
-        if(UserInfo.userInfo.getDefaultAdress() != null) binding.etAddress.setText(UserInfo.userInfo.getDefaultAdress());
+        if (UserInfo.userInfo.getDefaultAdress() != null)
+            binding.etAddress.setText(UserInfo.userInfo.getDefaultAdress());
         binding.etPassword.setText("");
     }
 
@@ -200,7 +222,7 @@ public class AccountFragment extends Fragment {
     }
 
 
-    public void UpdateInfo(int Uid){
+    public void UpdateInfo(int Uid) {
         accountAPIService = new AccountAPIService();
         String password = binding.etPassword.getText().toString().trim();
         String newpass = binding.etNewPassword.getText().toString().trim();
@@ -209,7 +231,7 @@ public class AccountFragment extends Fragment {
         String defaultAdress = binding.etAddress.getText().toString().trim();
         String phone = binding.etPhone.getText().toString().trim();
         String imageAva = "";
-        if(binding.ciAvatar.getDrawable() != null) {
+        if (binding.ciAvatar.getDrawable() != null) {
             Bitmap bitmap = ((BitmapDrawable) binding.ciAvatar.getDrawable()).getBitmap();
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
@@ -217,31 +239,31 @@ public class AccountFragment extends Fragment {
             imageAva = Base64.encodeToString(byteArray, Base64.DEFAULT);
             Log.d("ImageAva: ", imageAva);
         }
-        if(TextUtils.isEmpty(fullname)){
+        if (TextUtils.isEmpty(fullname)) {
             Toast.makeText(context, "Please, enter your Fullname!", Toast.LENGTH_SHORT).show();
-        }   else if(TextUtils.isEmpty(password)){
+        } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(context, "Please, enter your password!", Toast.LENGTH_SHORT).show();
         }
 //        else if(TextUtils.isEmpty(email)){
 //            Toast.makeText(context, "Please, enter your email!", Toast.LENGTH_SHORT).show();
 //        }
-        else if(TextUtils.isEmpty(defaultAdress)){
+        else if (TextUtils.isEmpty(defaultAdress)) {
             Toast.makeText(context, "Please, enter your address!", Toast.LENGTH_SHORT).show();
-        }   else if(TextUtils.isEmpty(phone)){
+        } else if (TextUtils.isEmpty(phone)) {
             Toast.makeText(context, "Please, enter your phone!", Toast.LENGTH_SHORT).show();
-        }   else {
-            if(!password.isEmpty() && newpass.isEmpty() && password.equals(UserInfo.userInfo.getPassword())){
+        } else {
+            if (!password.isEmpty() && newpass.isEmpty() && password.equals(UserInfo.userInfo.getPassword())) {
                 compositeDisposable.add(accountAPIService.UpdateUser(id, password, fullname, imageAva, defaultAdress, "email@gmail.com", phone)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 accountModel -> {
-                                    if (accountModel.isSuccess()){
+                                    if (accountModel.isSuccess()) {
                                         Account account = accountModel.getResult().get(0);
                                         UserInfo.userInfo = account;
                                         ShowInfo();
                                         Toast.makeText(context, "Update user information Success!", Toast.LENGTH_SHORT).show();
-                                    }else {
+                                    } else {
                                         Toast.makeText(context, accountModel.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 },
@@ -249,19 +271,18 @@ public class AccountFragment extends Fragment {
                                     Toast.makeText(context, throwable.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                         ));
-            }
-            else if(!password.isEmpty() && !newpass.isEmpty() && password.equals(UserInfo.userInfo.getPassword())){
+            } else if (!password.isEmpty() && !newpass.isEmpty() && password.equals(UserInfo.userInfo.getPassword())) {
                 compositeDisposable.add(accountAPIService.UpdateUser(id, newpass, fullname, imageAva, defaultAdress, "email@gmail.com", phone)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 accountModel -> {
-                                    if (accountModel.isSuccess()){
+                                    if (accountModel.isSuccess()) {
                                         Account account = accountModel.getResult().get(0);
                                         UserInfo.userInfo = account;
                                         ShowInfo();
                                         Toast.makeText(context, "Update user information Success!", Toast.LENGTH_SHORT).show();
-                                    }else {
+                                    } else {
                                         Toast.makeText(context, accountModel.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 },
@@ -269,22 +290,25 @@ public class AccountFragment extends Fragment {
                                     Toast.makeText(context, throwable.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                         ));
-            }   else {
+            } else {
                 Toast.makeText(context, "Password is not correct!", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         compositeDisposable.clear();
         binding = null;
     }
+
     //Menu Logout Action
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.logout_menu, menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {

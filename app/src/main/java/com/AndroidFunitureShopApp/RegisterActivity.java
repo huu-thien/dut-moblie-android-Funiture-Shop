@@ -4,16 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.AndroidFunitureShopApp.databinding.ActivityRegisterBinding;
+import com.AndroidFunitureShopApp.model.Account.Account;
 import com.AndroidFunitureShopApp.model.Account.AccountAPI;
 import com.AndroidFunitureShopApp.model.Account.AccountModel;
 import com.AndroidFunitureShopApp.model.Account.UserInfo;
 import com.AndroidFunitureShopApp.view.AccountFragment;
 import com.AndroidFunitureShopApp.viewmodel.AccountAPIService;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Scheduler;
@@ -25,12 +33,14 @@ public class RegisterActivity extends AppCompatActivity {
     private ActivityRegisterBinding binding;
     AccountAPIService accountAPIService;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
+    FirebaseAuth firebaseAuth;
     private boolean valid = false;
     private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
+
         View viewRoot = binding.getRoot();
         setContentView(viewRoot);
 
@@ -45,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(valid){
+
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -79,27 +90,51 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please re_enter your password!", Toast.LENGTH_SHORT).show();
         }   else {
             if(str_password.equals(str_repass)){
-                compositeDisposable.add(accountAPIService.register(str_username, str_password, str_role, str_fullname, str_imageAva, str_defaultAdress, str_email, str_phone)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                accountModel -> {
-                                    if (accountModel.isSuccess()){
-                                        Toast.makeText(getApplicationContext(), "Register Success!", Toast.LENGTH_SHORT).show();
-                                        valid = true;
-                                    }else {
-                                        Toast.makeText(getApplicationContext(), accountModel.getMessage(), Toast.LENGTH_SHORT).show();
+                firebaseAuth = FirebaseAuth.getInstance();
+                firebaseAuth.createUserWithEmailAndPassword(str_username,str_password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                                    if(user != null){
+                                        postData(str_username,str_password,str_role,str_fullname,str_imageAva,str_defaultAdress,str_email,str_phone,user.getUid());
+                                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                                     }
-                                },
-                                throwable -> {
-                                    Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Cannot register or maybe your email already exists", Toast.LENGTH_SHORT).show();
                                 }
-                        ));
+                            }
+                        });
+
             }
             else {
                 Toast.makeText(getApplicationContext(), "Password & Confirm Password do not match!", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void postData(String str_username, String str_password , String str_role, String str_fullname, String str_imageAva, String str_defaultAdress, String str_email, String str_phone, String uid){
+        compositeDisposable.add(accountAPIService.register(str_username, str_password, str_role, str_fullname, str_imageAva, str_defaultAdress, str_email, str_phone , uid)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        accountModel -> {
+                            if (accountModel.isSuccess()){
+                                Account account = accountModel.getResult().get(0);
+                                String role = account.getRole().toString();
+                                Log.d("DEBUG", "Account");
+                                UserInfo.userInfo = account;
+                                Toast.makeText(getApplicationContext(), "Register Success!", Toast.LENGTH_SHORT).show();
+                                valid = true;
+                            }else {
+                                Toast.makeText(getApplicationContext(), accountModel.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
     }
 
     @Override

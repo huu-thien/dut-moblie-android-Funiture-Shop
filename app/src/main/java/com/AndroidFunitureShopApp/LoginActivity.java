@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.AndroidFunitureShopApp.databinding.LoginBinding;
@@ -16,6 +17,11 @@ import com.AndroidFunitureShopApp.model.Account.UserInfo;
 import com.AndroidFunitureShopApp.view.AccountFragment;
 import com.AndroidFunitureShopApp.viewmodel.AccountAPIService;
 import com.AndroidFunitureShopApp.viewmodel.Utils;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.Serializable;
 import java.util.List;
@@ -27,8 +33,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginBinding binding;
-    private String id;
-    AccountAPIService accountAPIService;
+    FirebaseUser user;
+    FirebaseAuth firebaseAuth;
+    AccountAPIService accountAPIService = new AccountAPIService();
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
@@ -37,11 +44,30 @@ public class LoginActivity extends AppCompatActivity {
         binding = LoginBinding.inflate(getLayoutInflater());
         View viewRoot = binding.getRoot();
         setContentView(viewRoot);
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                String username = binding.etEmail.getText().toString().trim();
+                String password = binding.etPassword.getText().toString().trim();
+                if (user != null) {
+                     //user already has
+                    login(username,password);
+                } else {
+                    // user signouted
+                    firebaseAuth.signInWithEmailAndPassword(username,password).
+                            addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if(task.isSuccessful()){
+                                        login(username,password);
+                                    }
+                                }
+                            });
+                }
+
             }
         });
 
@@ -64,15 +90,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void login() {
-        String username = binding.etEmail.getText().toString().trim();
-        String password = binding.etPassword.getText().toString().trim();
-        accountAPIService = new AccountAPIService();
+    private void login(String username, String password) {
         if (TextUtils.isEmpty(username)) {
             Toast.makeText(getApplicationContext(), "Please, enter your username!", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(getApplicationContext(), "Please, enter your password!", Toast.LENGTH_SHORT).show();
         } else {
+
             compositeDisposable.add(accountAPIService.login(username, password)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -82,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Account account = accountModel.getResult().get(0);
                                     String role = account.getRole().toString();
                                     Log.d("DEBUG", "Account");
+                                    accountAPIService.UpdateStatus(account.getId(),1);
                                     UserInfo.userInfo = account;
                                     Utils.account = account;
 
@@ -105,6 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                     ));
+
         }
     }
 

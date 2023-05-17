@@ -6,21 +6,39 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.AndroidFunitureShopApp.databinding.ActivityMainBinding;
+import com.AndroidFunitureShopApp.model.Account.AccountAPI;
+import com.AndroidFunitureShopApp.model.Account.UserInfo;
 import com.AndroidFunitureShopApp.view.AccountFragment;
+import com.AndroidFunitureShopApp.viewmodel.AccountAPIService;
 import com.AndroidFunitureShopApp.viewmodel.Utils;
 import com.AndroidFunitureShopApp.viewmodel.ViewPagerAdapter;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.ktx.Firebase;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
+    String user_id;
     private BottomNavigationView bottomNavigationView;
+    AccountAPIService accountAPIService = new AccountAPIService();
     private ViewPager viewPager;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +48,11 @@ public class MainActivity extends AppCompatActivity {
         View viewRoot = binding.getRoot();
         setContentView(viewRoot);
         ChangeTab();
-
         if (Utils.cartItemList == null) {
             Utils.cartItemList = new ArrayList<>();
         }
-
         SetUserInfo();
+        getToken();
 //        binding.searchBut.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -43,6 +60,46 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 //
+
+    }
+
+    private void getToken() {
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnSuccessListener(new OnSuccessListener<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        if (!TextUtils.isEmpty(s)) {
+                            compositeDisposable.add(accountAPIService.UpdateToken(Utils.account.getId(), s)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            messageModel -> {
+
+                                            },
+                                            throwable -> {
+                                                Log.d("DEBUG", throwable.getMessage());
+                                            }
+                                    ));
+                        }
+                    }
+                });
+        compositeDisposable.add(accountAPIService.GetToken(1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        userModel -> {
+
+                            if (userModel.isSuccess()) {
+                                Utils.ID_RECEIVED = String.valueOf(userModel.getResult().get(0).getId());
+                                Log.d("DEBUG", Utils.ID_RECEIVED);
+                            }
+                        },
+                        throwable -> {
+                            Log.d("DEBUG", throwable.getMessage());
+                        }
+                ));
+
 
     }
 
@@ -54,8 +111,9 @@ public class MainActivity extends AppCompatActivity {
     private void SetUserInfo() {
         AccountFragment fragment = new AccountFragment();
         Intent intent = getIntent();
-        String user_id = intent.getStringExtra("account_ID");
+        user_id = intent.getStringExtra("account_ID");
         Bundle bundle = new Bundle();
+
         bundle.putString("account_ID", user_id);
         fragment.setArguments(bundle);
     }
@@ -98,6 +156,11 @@ public class MainActivity extends AppCompatActivity {
 //                    Toast.makeText(MainActivity.this, "Fragment 4", Toast.LENGTH_SHORT).show();
                     viewPager.setCurrentItem(3);
                     break;
+                case R.id.action_chat:
+                    Log.d("DEBUG", "4");
+//                    Toast.makeText(MainActivity.this, "Fragment 5", Toast.LENGTH_SHORT).show();
+                    viewPager.setCurrentItem(4);
+                    break;
             }
             ;
 
@@ -115,7 +178,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
@@ -132,6 +194,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 3:
                         bottomNavigationView.getMenu().findItem(R.id.action_cart).setChecked(true);
+                        break;
+                    case 4:
+                        bottomNavigationView.getMenu().findItem(R.id.action_chat).setChecked(true);
                         break;
                 }
             }

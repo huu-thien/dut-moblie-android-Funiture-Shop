@@ -12,6 +12,14 @@ public class Utils {
     public static List<CartItem> cartItemList;
     public static List<CartItem> cartItemBuyList = new ArrayList<>();
     public static Account account;
+    public static String ID_RECEIVED;
+    public static final String SENT_ID = "idsent";
+    public static final String RECEIVED_ID= "idreceived";
+    public static final String MESS= "message";
+    public static final String DATE_TIME= "datetime";
+    public static final String PATH_CHAT= "chat";
+
+
 
     public static void addToCart(Product product) {
         int id = product.getId();

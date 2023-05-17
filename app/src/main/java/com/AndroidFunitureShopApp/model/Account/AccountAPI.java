@@ -16,7 +16,8 @@ public interface AccountAPI {
             @Field("imageAva") String imageAva,
             @Field("defaultAdress") String defaultAdress,
             @Field("email") String email,
-            @Field("phone") String phone
+            @Field("phone") String phone,
+            @Field("uid") String uid
     );
 
     @POST("login.php")
@@ -51,5 +52,24 @@ public interface AccountAPI {
     Observable<AccountModel> updatePassword(
             @Field("id") int id,
             @Field("password") String password
+    );
+
+    @POST("updateToken.php")
+    @FormUrlEncoded
+    Observable<AccountModel> updateToken(
+            @Field("id") int id,
+            @Field("token") String token
+    );
+    @POST("updateStatus.php")
+    @FormUrlEncoded
+    Observable<AccountModel> updateStatus(
+            @Field("id") int id,
+            @Field("status") int status
+    );
+
+    @POST("getToken.php")
+    @FormUrlEncoded
+    Observable<AccountModel> getToken(
+            @Field("status") int status
     );
 }

@@ -2,6 +2,8 @@ package com.AndroidFunitureShopApp.viewmodel;
 
 import com.AndroidFunitureShopApp.model.Account.AccountAPI;
 import com.AndroidFunitureShopApp.model.Account.AccountModel;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.core.Observable;
@@ -21,8 +23,8 @@ public class AccountAPIService {
                 .create(AccountAPI.class);
     }
 
-    public Observable<AccountModel> register(String username, String password, String role, String fullname, String imageAva, String defaultAdress, String email, String phone) {
-        return api.register(username, password, role, fullname, imageAva, defaultAdress, email, phone);
+    public Observable<AccountModel> register(String username, String password, String role, String fullname, String imageAva, String defaultAdress, String email, String phone, String uid) {
+        return api.register(username, password, role, fullname, imageAva, defaultAdress, email, phone, uid);
     }
 
     public Observable<AccountModel> login(String username, String password) {
@@ -39,5 +41,15 @@ public class AccountAPIService {
 
     public Observable<AccountModel> UpdatePassword(int id, String password) {
         return api.updatePassword(id, password);
+    }
+    public Observable<AccountModel> UpdateToken(int id, String token) {
+        return api.updateToken(id, token);
+    }
+    public Observable<AccountModel> UpdateStatus(int id, int status) {
+        return api.updateStatus(id, status);
+    }
+
+    public Observable<AccountModel> GetToken(int status) {
+        return api.getToken(status);
     }
 }

@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -32,7 +33,9 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.google.firebase:firebase-auth-ktx:22.0.0'
+    implementation 'com.google.firebase:firebase-firestore:24.6.0'
+    implementation 'com.google.firebase:firebase-messaging:23.0.3'
     def room_version = "2.5.0"
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -71,5 +74,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "com.google.code.gson:gson:2.8.9"
+
 
 }
