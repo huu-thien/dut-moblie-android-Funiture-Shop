@@ -1,4 +1,4 @@
-package com.AndroidFunitureShopApp.Server.Product;
+package com.AndroidFunitureShopApp.model.Product;
 
 import com.squareup.picasso.Target;
 

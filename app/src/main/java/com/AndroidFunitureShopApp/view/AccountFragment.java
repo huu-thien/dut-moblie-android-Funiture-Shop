@@ -50,10 +50,12 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.internal.Util;
 
 public class AccountFragment extends Fragment {
     private FragmentAccountBinding binding;
@@ -112,6 +114,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 UpdateInfo(id);
+                binding.etNewPassword.setText("");
             }
         });
         binding.layoutLogout.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +124,8 @@ public class AccountFragment extends Fragment {
                 FirebaseAuth.getInstance().signOut();
                 Intent dangnhap = new Intent(getActivity(), LoginActivity.class);
                 startActivity(dangnhap);
-
+                Utils.cartItemList = new ArrayList<>();
+                Utils.cartItemBuyList = new ArrayList<>();
             }
         });
         return view;

@@ -8,8 +8,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.AndroidFunitureShopApp.databinding.ActivityProductByCategoryBinding;
-import com.AndroidFunitureShopApp.Server.Product.Product;
-import com.AndroidFunitureShopApp.Server.Product.productsAdapter;
+import com.AndroidFunitureShopApp.model.Product.Product;
+import com.AndroidFunitureShopApp.model.Product.productsAdapter;
 import com.AndroidFunitureShopApp.model.Product.Product;
 import com.AndroidFunitureShopApp.model.Product.productsAdapter;
 import com.AndroidFunitureShopApp.viewmodel.productsAPIService;
@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -53,7 +54,7 @@ public class ProductByCategory extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver<List<Product>>() {
                     @Override
-                    public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<Product> products) {
+                    public void onSuccess(@NonNull List<Product> products) {
                         Log.d("DEBUG", "Success");
                         for (Product dog : products) {
                             newProducts.add(dog);
@@ -62,7 +63,7 @@ public class ProductByCategory extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         Log.d("DEBUG", "Fail" + e.getMessage());
                     }
                 });

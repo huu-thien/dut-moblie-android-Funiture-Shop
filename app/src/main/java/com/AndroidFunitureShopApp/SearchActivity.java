@@ -12,8 +12,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 
-import com.AndroidFunitureShopApp.Server.Product.Product;
-import com.AndroidFunitureShopApp.Server.Product.productsAdapter;
+import com.AndroidFunitureShopApp.model.Product.Product;
+import com.AndroidFunitureShopApp.model.Product.productsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

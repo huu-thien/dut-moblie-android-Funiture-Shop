@@ -11,10 +11,13 @@ import android.widget.Toast;
 
 import com.AndroidFunitureShopApp.databinding.ActivityPaymentBinding;
 import com.AndroidFunitureShopApp.model.Account.UserInfo;
+import com.AndroidFunitureShopApp.model.Cart.CartItem;
 import com.AndroidFunitureShopApp.viewmodel.OrderAPIService;
 import com.AndroidFunitureShopApp.viewmodel.Utils;
 import com.google.gson.Gson;
 
+
+import java.util.ArrayList;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -54,6 +57,7 @@ public class PaymentActivity extends AppCompatActivity {
                     String strEmail = UserInfo.userInfo.getEmail();
                     String strPhone = UserInfo.userInfo.getPhone();
                     int idUser = UserInfo.userInfo.getId();
+
                     Log.d("test", new Gson().toJson(Utils.cartItemList));
 
                     compositeDisposable.add(orderAPIService.createOrder(strEmail, strPhone, totalPrice, idUser, strAddress, totalItem, new Gson().toJson(Utils.cartItemBuyList))
@@ -67,7 +71,16 @@ public class PaymentActivity extends AppCompatActivity {
                             }, throwable -> {
                                 Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
                             }));
-
+//                    Utils.cartItemList = new ArrayList<>();
+                    for(CartItem item : Utils.cartItemList) {
+                        for(CartItem itemBuy : Utils.cartItemBuyList) {
+                            if(item.getName() == itemBuy.getName()) {
+                                Utils.cartItemList.remove(item);
+                                break;
+                            }
+                        }
+                    }
+                    Utils.cartItemBuyList = new ArrayList<>();
                 }
             }
         });
